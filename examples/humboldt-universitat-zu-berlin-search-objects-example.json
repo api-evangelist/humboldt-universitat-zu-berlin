@@ -1,0 +1,62 @@
+{
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": {},
+            "type": "discover",
+            "_links": {
+              "indexableObject": { "href": "https://edoc.hu-berlin.de/server/api/core/items/00000000-0000-0000-0000-000000000000" }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "uuid": "00000000-0000-0000-0000-000000000000",
+                "name": "Example archived item title",
+                "handle": "18452/00000",
+                "type": "item",
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "metadata": {
+                  "dc.title": [
+                    { "value": "Example archived item title", "language": null, "authority": null, "confidence": -1, "place": 0 }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 1,
+        "totalPages": 1,
+        "totalElements": 1
+      },
+      "_links": {
+        "self": { "href": "https://edoc.hu-berlin.de/server/api/discover/search/objects?query=test&size=1" }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 6,
+        "_embedded": {
+          "values": [
+            {
+              "label": "Mustermann, Erika",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": { "href": "https://edoc.hu-berlin.de/server/api/discover/search/objects?query=test&f.author=Mustermann,%20Erika,equals" }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

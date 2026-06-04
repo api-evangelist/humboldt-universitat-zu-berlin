@@ -1,0 +1,55 @@
+extends: []
+formats:
+  - oas3
+documentationUrl: https://edoc-info.hu-berlin.de/en
+rules:
+  edoc-info-title-present:
+    description: API document must declare a title.
+    severity: error
+    given: $.info
+    then:
+      field: title
+      function: truthy
+  edoc-info-version-present:
+    description: API document must declare a version.
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+  edoc-server-uses-edoc-base:
+    description: Server URL should point at the edoc-Server DSpace REST base.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "edoc\\.hu-berlin\\.de/server/api"
+  edoc-hal-content-type:
+    description: DSpace responses are HAL; 200 responses should offer application/hal+json.
+    severity: warn
+    given: $.paths[*].get.responses['200'].content
+    then:
+      field: application/hal+json
+      function: truthy
+  edoc-operation-id-present:
+    description: Every operation should define an operationId.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: operationId
+      function: truthy
+  edoc-uuid-path-param-format:
+    description: UUID path parameters should declare format uuid.
+    severity: info
+    given: $.components.parameters.uuid.schema
+    then:
+      field: format
+      function: truthy
+  edoc-metadata-map-pattern:
+    description: Repository objects should carry a metadata map keyed by qualified Dublin Core fields.
+    severity: info
+    given: $.components.schemas[?(@property.match(/Community|Collection|Item/))].properties
+    then:
+      field: metadata
+      function: truthy

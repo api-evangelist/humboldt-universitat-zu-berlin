@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edoc.hu-berlin.de/schema/collection.json",
+  "title": "DSpace Collection",
+  "description": "A collection in the edoc-Server DSpace repository at Humboldt-Universität zu Berlin. Collections are containers of items within a community.",
+  "type": "object",
+  "required": ["uuid", "type"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "uuid": { "type": "string", "format": "uuid" },
+    "name": { "type": "string" },
+    "handle": { "type": "string", "examples": ["18452/20731"] },
+    "metadata": { "$ref": "#/$defs/metadataMap" },
+    "archivedItemsCount": { "type": "integer" },
+    "type": { "type": "string", "const": "collection" },
+    "_links": { "$ref": "#/$defs/links" }
+  },
+  "$defs": {
+    "metadataValue": {
+      "type": "object",
+      "required": ["value"],
+      "properties": {
+        "value": { "type": "string" },
+        "language": { "type": ["string", "null"] },
+        "authority": { "type": ["string", "null"] },
+        "confidence": { "type": "integer" },
+        "place": { "type": "integer" }
+      }
+    },
+    "metadataMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "$ref": "#/$defs/metadataValue" }
+      }
+    },
+    "link": {
+      "type": "object",
+      "properties": { "href": { "type": "string", "format": "uri" } }
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/link" }
+    }
+  }
+}

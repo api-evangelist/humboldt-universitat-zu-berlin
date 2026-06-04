@@ -1,0 +1,57 @@
+{
+  "_embedded": {
+    "communities": [
+      {
+        "id": "084bd99d-4f38-4b29-8a08-32d4bf5a190e",
+        "uuid": "084bd99d-4f38-4b29-8a08-32d4bf5a190e",
+        "name": "2011 (1) - Netzwerke im Indischen Ozean",
+        "handle": "18452/21664",
+        "metadata": {
+          "dc.description": [
+            {
+              "value": "Nicht erst seit den letzten beiden Jahrzehnten ist der Indische Ozean ein Wirtschafts- und Kulturraum.",
+              "language": null,
+              "authority": null,
+              "confidence": -1,
+              "place": 0
+            }
+          ],
+          "dc.identifier.uri": [
+            {
+              "value": "https://edoc.hu-berlin.de/18452/21664",
+              "language": null,
+              "authority": null,
+              "confidence": -1,
+              "place": 0
+            }
+          ],
+          "dc.title": [
+            {
+              "value": "2011 (1) - Netzwerke im Indischen Ozean",
+              "language": null,
+              "authority": null,
+              "confidence": -1,
+              "place": 0
+            }
+          ]
+        },
+        "archivedItemsCount": -1,
+        "type": "community",
+        "_links": {
+          "collections": { "href": "https://edoc.hu-berlin.de/server/api/core/communities/084bd99d-4f38-4b29-8a08-32d4bf5a190e/collections" },
+          "logo": { "href": "https://edoc.hu-berlin.de/server/api/core/communities/084bd99d-4f38-4b29-8a08-32d4bf5a190e/logo" },
+          "subcommunities": { "href": "https://edoc.hu-berlin.de/server/api/core/communities/084bd99d-4f38-4b29-8a08-32d4bf5a190e/subcommunities" },
+          "parentCommunity": { "href": "https://edoc.hu-berlin.de/server/api/core/communities/084bd99d-4f38-4b29-8a08-32d4bf5a190e/parentCommunity" },
+          "adminGroup": { "href": "https://edoc.hu-berlin.de/server/api/core/communities/084bd99d-4f38-4b29-8a08-32d4bf5a190e/adminGroup" },
+          "self": { "href": "https://edoc.hu-berlin.de/server/api/core/communities/084bd99d-4f38-4b29-8a08-32d4bf5a190e" }
+        }
+      }
+    ]
+  },
+  "page": {
+    "size": 1,
+    "totalElements": 135,
+    "totalPages": 135,
+    "number": 0
+  }
+}

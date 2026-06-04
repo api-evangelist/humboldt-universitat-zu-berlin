@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://edoc.hu-berlin.de/structure/community.json",
+  "name": "DSpaceCommunity",
+  "description": "JSON Structure for a DSpace community in the edoc-Server repository at Humboldt-Universität zu Berlin.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "uuid": { "type": "string" },
+    "name": { "type": "string" },
+    "handle": { "type": "string" },
+    "metadata": {
+      "type": "map",
+      "values": {
+        "type": "array",
+        "items": { "$ref": "#/definitions/MetadataValue" }
+      }
+    },
+    "archivedItemsCount": { "type": "int32" },
+    "type": { "type": "string" }
+  },
+  "required": ["uuid", "type"],
+  "definitions": {
+    "MetadataValue": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "string" },
+        "language": { "type": ["string", "null"] },
+        "authority": { "type": ["string", "null"] },
+        "confidence": { "type": "int32" },
+        "place": { "type": "int32" }
+      },
+      "required": ["value"]
+    }
+  }
+}

@@ -44,6 +44,20 @@ apis:
         url: https://edoc-info.hu-berlin.de/en
       - type: Website
         url: https://edoc.hu-berlin.de/
+      - type: OpenAPI
+        url: openapi/humboldt-universitat-zu-berlin-edoc-rest.yaml
+      - type: x-json-schema
+        url: json-schema/humboldt-universitat-zu-berlin-item-schema.json
+      - type: x-json-schema
+        url: json-schema/humboldt-universitat-zu-berlin-community-schema.json
+      - type: x-json-schema
+        url: json-schema/humboldt-universitat-zu-berlin-collection-schema.json
+      - type: x-vocabulary
+        url: vocabulary/humboldt-universitat-zu-berlin-vocabulary.yml
+      - type: x-rules
+        url: rules/humboldt-universitat-zu-berlin-rules.yml
+      - type: x-json-ld
+        url: json-ld/humboldt-universitat-zu-berlin-context.jsonld
   - aid: humboldt-universitat-zu-berlin:edoc-oai
     name: edoc-Server OAI-PMH Interface
     description: >-

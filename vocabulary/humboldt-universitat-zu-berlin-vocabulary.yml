@@ -1,0 +1,67 @@
+vocabulary:
+  name: edoc-Server DSpace REST API Vocabulary
+  description: >-
+    Controlled vocabulary of the core terms observed in the edoc-Server DSpace 8
+    REST API at Humboldt-Universität zu Berlin. Terms describe the repository's
+    HAL/JSON resource model and the Dublin Core metadata it exposes.
+  version: '8.4'
+  terms:
+    - term: Community
+      definition: >-
+        A grouping of collections and sub-communities in the repository, used to
+        organize content by faculty, journal, series, or theme.
+      tags: [resource, structure, dspace]
+    - term: Collection
+      definition: A container of items that belongs to a community.
+      tags: [resource, structure, dspace]
+    - term: Item
+      definition: >-
+        A repository record (thesis, dissertation, article, or dataset) holding
+        descriptive metadata and one or more bundles of bitstreams.
+      tags: [resource, content, dspace]
+    - term: Bitstream
+      definition: An individual file (e.g. a PDF) attached to an item via a bundle.
+      tags: [resource, file, dspace]
+    - term: Handle
+      definition: >-
+        A persistent identifier assigned to communities, collections, and items
+        (e.g. 18452/21664) under the Handle System.
+      tags: [identifier, persistence]
+    - term: UUID
+      definition: The internal universally unique identifier for every DSpace object.
+      tags: [identifier]
+    - term: Metadata
+      definition: >-
+        A map of qualified Dublin Core fields (dc.title, dc.description,
+        dc.identifier.uri, etc.) to arrays of metadata values on each resource.
+      tags: [metadata, dublin-core]
+    - term: MetadataValue
+      definition: >-
+        A single metadata entry carrying value, language, authority, confidence,
+        and place ordering.
+      tags: [metadata]
+    - term: Discover
+      definition: >-
+        The discovery search subsystem providing full-text and faceted querying
+        over indexed repository objects.
+      tags: [search, discovery]
+    - term: Facet
+      definition: >-
+        A filterable dimension (author, subject, date, type) returned alongside
+        discovery search results.
+      tags: [search, discovery]
+    - term: HAL
+      definition: >-
+        Hypertext Application Language; the response format using _links and
+        _embedded to expose related resources.
+      tags: [format, hypermedia]
+    - term: archivedItemsCount
+      definition: >-
+        The count of archived items under a community or collection; -1 when not
+        computed for the request.
+      tags: [statistic]
+    - term: OAI-PMH
+      definition: >-
+        The Open Archives Initiative Protocol for Metadata Harvesting endpoint
+        accompanying the repository for bulk metadata harvesting.
+      tags: [harvesting, metadata, interoperability]

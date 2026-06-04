@@ -1,0 +1,63 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "hu": "https://edoc.hu-berlin.de/vocab#",
+    "@vocab": "https://edoc.hu-berlin.de/vocab#",
+
+    "organization": "schema:CollegeOrUniversity",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+
+    "Community": "hu:Community",
+    "Collection": "hu:Collection",
+    "Item": {
+      "@id": "hu:Item",
+      "@type": "schema:CreativeWork"
+    },
+    "Bitstream": {
+      "@id": "hu:Bitstream",
+      "@type": "schema:MediaObject"
+    },
+
+    "uuid": "hu:uuid",
+    "handle": {
+      "@id": "dcterms:identifier"
+    },
+    "title": "dc:title",
+    "metadataTitle": "dc:title",
+    "metadataDescription": "dc:description",
+    "identifierUri": {
+      "@id": "dc:identifier",
+      "@type": "@id"
+    },
+    "lastModified": {
+      "@id": "schema:dateModified",
+      "@type": "schema:DateTime"
+    },
+    "inArchive": "hu:inArchive",
+    "discoverable": "hu:discoverable",
+    "withdrawn": "hu:withdrawn",
+    "archivedItemsCount": "hu:archivedItemsCount",
+    "entityType": "hu:entityType",
+
+    "collections": {
+      "@id": "hu:hasCollection",
+      "@type": "@id"
+    },
+    "subcommunities": {
+      "@id": "hu:hasSubcommunity",
+      "@type": "@id"
+    },
+    "parentCommunity": {
+      "@id": "hu:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@type": "schema:CollegeOrUniversity",
+  "name": "Humboldt-Universität zu Berlin",
+  "url": "https://www.hu-berlin.de/en",
+  "description": "Public research university in Berlin, Germany. Its edoc-Server Open Access repository exposes a DSpace 8 REST API and an OAI-PMH metadata interface."
+}
