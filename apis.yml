@@ -1,0 +1,102 @@
+---
+aid: humboldt-universitat-zu-berlin
+name: Humboldt-Universität zu Berlin
+description: >-
+  Humboldt-Universität zu Berlin (HU Berlin) is a public research university in
+  Berlin, Germany, ranked #126 in the QS World University Rankings 2025. Its
+  public developer/API footprint is centered on scholarly and library
+  infrastructure rather than a unified developer portal: the edoc Open Access
+  publication server runs on DSpace 7 and exposes a public REST API and an
+  OAI-PMH metadata interface, the University Library's Primus discovery service
+  is built on Ex Libris Primo/Alma (which provides open APIs), and access
+  management uses Shibboleth/SAML single sign-on. The University Library IT
+  department also maintains a public GitHub organization (UB-HU-Berlin). No
+  consolidated, self-service public API developer portal was confirmed.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/humboldt-universitat-zu-berlin/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Open Access
+  - Library
+  - Germany
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: humboldt-universitat-zu-berlin:edoc-rest
+    name: edoc-Server DSpace REST API
+    description: >-
+      Public REST API of the edoc Open Access publication server, the
+      institutional repository of Humboldt-Universität zu Berlin. The repository
+      runs on DSpace 7, whose Server REST API exposes communities, collections,
+      items, and bitstreams as HAL/JSON resources.
+    humanURL: https://edoc-info.hu-berlin.de/en
+    baseURL: https://edoc.hu-berlin.de/server/api
+    tags: [ Open Access, Repository, DSpace, Research, Library ]
+    properties:
+      - type: Documentation
+        url: https://edoc-info.hu-berlin.de/en
+      - type: Website
+        url: https://edoc.hu-berlin.de/
+  - aid: humboldt-universitat-zu-berlin:edoc-oai
+    name: edoc-Server OAI-PMH Interface
+    description: >-
+      Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH 2.0)
+      endpoint for the edoc institutional repository, allowing public harvesting
+      of metadata for theses, dissertations, articles, and research data.
+    humanURL: https://edoc-info.hu-berlin.de/en
+    baseURL: https://edoc.hu-berlin.de/server/oai/request
+    tags: [ OAI-PMH, Metadata Harvesting, Open Access, Repository ]
+    properties:
+      - type: Documentation
+        url: https://edoc-info.hu-berlin.de/en
+  - aid: humboldt-universitat-zu-berlin:primo-discovery
+    name: University Library Primus Discovery (Ex Libris Primo/Alma)
+    description: >-
+      The University Library's central search portal, Primus, is built on the
+      Ex Libris Primo discovery service backed by Alma. Primo/Alma provide open
+      REST APIs for discovery and resource management; API access at HU Berlin
+      is governed by the library and Ex Libris and is not openly self-service.
+    humanURL: https://www.ub.hu-berlin.de/en/literature-search/catalogues/catalogues
+    tags: [ Library, Discovery, Primo, Alma, Catalog ]
+    properties:
+      - type: Documentation
+        url: https://www.ub.hu-berlin.de/en/literature-search/catalogues/catalogues
+  - aid: humboldt-universitat-zu-berlin:shibboleth-sso
+    name: HU-IAM Shibboleth Single Sign-On (SAML)
+    description: >-
+      Identity and access management at Humboldt-Universität zu Berlin uses
+      Shibboleth/SAML single sign-on, operated by the Computer- und
+      Medienservice (CMS). Service-provider integration is documented for
+      university service operators rather than offered as a public API.
+    humanURL: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
+    tags: [ Identity, SSO, Shibboleth, SAML, Authentication ]
+    properties:
+      - type: Documentation
+        url: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
+common:
+  - type: Website
+    url: https://www.hu-berlin.de/en
+  - type: GitHub
+    url: https://github.com/UB-HU-Berlin
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/humboldt-universitat-zu-berlin/
+  - type: Authentication
+    url: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
+  - type: Plans
+    url: plans/humboldt-universitat-zu-berlin-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/humboldt-universitat-zu-berlin-rate-limits.yml
+  - type: FinOps
+    url: finops/humboldt-universitat-zu-berlin-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
