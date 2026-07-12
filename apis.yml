@@ -95,6 +95,10 @@ apis:
       - type: Documentation
         url: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
 common:
+  - type: VulnerabilityDisclosure
+    url: security/humboldt-universitat-zu-berlin-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/humboldt-universitat-zu-berlin-domain-security.yml
   - type: Website
     url: https://www.hu-berlin.de/en
   - type: GitHub
