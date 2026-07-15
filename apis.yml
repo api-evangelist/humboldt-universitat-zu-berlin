@@ -95,6 +95,8 @@ apis:
       - type: Documentation
         url: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
 common:
+  - type: AgenticAccess
+    url: agentic-access/humboldt-universitat-zu-berlin-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/humboldt-universitat-zu-berlin-vulnerability-disclosure.yml
   - type: DomainSecurity
