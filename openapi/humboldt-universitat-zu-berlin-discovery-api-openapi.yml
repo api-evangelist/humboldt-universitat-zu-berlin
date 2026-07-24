@@ -1,0 +1,173 @@
+openapi: 3.0.3
+info:
+  title: edoc-Server DSpace REST API (Humboldt-Universität zu Berlin) Core Discovery API
+  description: Public, read-oriented subset of the DSpace REST API powering the edoc-Server Open Access institutional repository of Humboldt-Universität zu Berlin. The repository runs DSpace 8 and exposes communities, collections, items, and a discovery search as HAL/JSON resources. This description was authored from the live API responses observed at the base URL; only publicly reachable, unauthenticated read endpoints are documented here. Write, submission, workflow, and authenticated endpoints exist in DSpace but are intentionally omitted because they require authentication and are not publicly self-service.
+  version: '8.4'
+  contact:
+    name: edoc-Server, University Library, Humboldt-Universität zu Berlin
+    url: https://edoc-info.hu-berlin.de/en
+  license:
+    name: DSpace BSD License
+    url: https://github.com/DSpace/DSpace/blob/main/LICENSE
+servers:
+- url: https://edoc.hu-berlin.de/server/api
+  description: edoc-Server production REST API
+tags:
+- name: Discovery
+  description: Search and discovery over indexed repository objects
+paths:
+  /discover/search/objects:
+    get:
+      tags:
+      - Discovery
+      summary: Discovery search over indexed objects
+      description: Full-text and faceted search across indexed repository objects (items, collections, communities). Returns an embedded searchResult with objects and facets.
+      operationId: searchObjects
+      parameters:
+      - name: query
+        in: query
+        description: Search query string
+        schema:
+          type: string
+      - name: dsoType
+        in: query
+        description: Restrict results to a DSpace object type
+        schema:
+          type: string
+          enum:
+          - item
+          - collection
+          - community
+      - name: scope
+        in: query
+        description: UUID of a community or collection to scope the search to
+        schema:
+          type: string
+          format: uuid
+      - name: sort
+        in: query
+        description: Sort expression, e.g. "dc.title,ASC"
+        schema:
+          type: string
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/size'
+      responses:
+        '200':
+          description: Search result with embedded objects and facets
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/SearchResultResponse'
+components:
+  schemas:
+    Facet:
+      type: object
+      properties:
+        name:
+          type: string
+        facetType:
+          type: string
+        facetLimit:
+          type: integer
+        _embedded:
+          type: object
+          properties:
+            values:
+              type: array
+              items:
+                $ref: '#/components/schemas/FacetValue'
+    FacetValue:
+      type: object
+      properties:
+        label:
+          type: string
+        count:
+          type: integer
+        authorityKey:
+          type: string
+          nullable: true
+        type:
+          type: string
+        _links:
+          type: object
+          properties:
+            search:
+              $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+    PageInfo:
+      type: object
+      properties:
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
+    SearchResultResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            searchResult:
+              type: object
+              properties:
+                _embedded:
+                  type: object
+                  properties:
+                    objects:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/SearchResultObject'
+                page:
+                  $ref: '#/components/schemas/PageInfo'
+                _links:
+                  type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/Link'
+            facets:
+              type: array
+              items:
+                $ref: '#/components/schemas/Facet'
+    SearchResultObject:
+      type: object
+      properties:
+        hitHighlights:
+          type: object
+        type:
+          type: string
+        _links:
+          type: object
+          properties:
+            indexableObject:
+              $ref: '#/components/schemas/Link'
+        _embedded:
+          type: object
+          properties:
+            indexableObject:
+              type: object
+              description: The embedded item, collection, or community.
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Zero-based page index
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    size:
+      name: size
+      in: query
+      description: Page size
+      schema:
+        type: integer
+        minimum: 1
+        default: 20

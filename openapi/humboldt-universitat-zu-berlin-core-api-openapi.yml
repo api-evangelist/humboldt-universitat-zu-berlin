@@ -1,0 +1,322 @@
+openapi: 3.0.3
+info:
+  title: edoc-Server DSpace REST API (Humboldt-Universität zu Berlin) Core API
+  description: Public, read-oriented subset of the DSpace REST API powering the edoc-Server Open Access institutional repository of Humboldt-Universität zu Berlin. The repository runs DSpace 8 and exposes communities, collections, items, and a discovery search as HAL/JSON resources. This description was authored from the live API responses observed at the base URL; only publicly reachable, unauthenticated read endpoints are documented here. Write, submission, workflow, and authenticated endpoints exist in DSpace but are intentionally omitted because they require authentication and are not publicly self-service.
+  version: '8.4'
+  contact:
+    name: edoc-Server, University Library, Humboldt-Universität zu Berlin
+    url: https://edoc-info.hu-berlin.de/en
+  license:
+    name: DSpace BSD License
+    url: https://github.com/DSpace/DSpace/blob/main/LICENSE
+servers:
+- url: https://edoc.hu-berlin.de/server/api
+  description: edoc-Server production REST API
+tags:
+- name: Core
+  description: Core repository resources (communities, collections, items)
+paths:
+  /core/communities:
+    get:
+      tags:
+      - Core
+      summary: List communities
+      description: Returns a paginated HAL collection of top-level and child communities.
+      operationId: listCommunities
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/size'
+      responses:
+        '200':
+          description: Paginated list of communities
+          content:
+            application/hal+json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    _embedded:
+                      type: object
+                      properties:
+                        communities:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/Community'
+  /core/communities/{uuid}:
+    get:
+      tags:
+      - Core
+      summary: Get a community by UUID
+      operationId: getCommunity
+      parameters:
+      - $ref: '#/components/parameters/uuid'
+      responses:
+        '200':
+          description: A single community
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Community'
+        '404':
+          description: Not found
+  /core/communities/{uuid}/collections:
+    get:
+      tags:
+      - Core
+      summary: List collections within a community
+      operationId: listCommunityCollections
+      parameters:
+      - $ref: '#/components/parameters/uuid'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/size'
+      responses:
+        '200':
+          description: Paginated list of collections
+          content:
+            application/hal+json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    _embedded:
+                      type: object
+                      properties:
+                        collections:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/Collection'
+  /core/collections:
+    get:
+      tags:
+      - Core
+      summary: List collections
+      operationId: listCollections
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/size'
+      responses:
+        '200':
+          description: Paginated list of collections
+          content:
+            application/hal+json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    _embedded:
+                      type: object
+                      properties:
+                        collections:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/Collection'
+  /core/collections/{uuid}:
+    get:
+      tags:
+      - Core
+      summary: Get a collection by UUID
+      operationId: getCollection
+      parameters:
+      - $ref: '#/components/parameters/uuid'
+      responses:
+        '200':
+          description: A single collection
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+        '404':
+          description: Not found
+  /core/items/{uuid}:
+    get:
+      tags:
+      - Core
+      summary: Get an item by UUID
+      description: Returns a single archived item. Item listing endpoints in DSpace are access-controlled; individual archived (publicly discoverable) items are retrievable by UUID.
+      operationId: getItem
+      parameters:
+      - $ref: '#/components/parameters/uuid'
+      responses:
+        '200':
+          description: A single item
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '401':
+          description: Unauthorized (item not publicly accessible)
+        '404':
+          description: Not found
+components:
+  schemas:
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+    PageInfo:
+      type: object
+      properties:
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
+    MetadataMap:
+      type: object
+      description: Map of metadata field keys (e.g. "dc.title", "dc.identifier.uri", "dc.description") to arrays of metadata values.
+      additionalProperties:
+        type: array
+        items:
+          $ref: '#/components/schemas/MetadataValue'
+    Item:
+      type: object
+      description: A DSpace item (a repository record such as a thesis, article, or dataset).
+      properties:
+        id:
+          type: string
+          format: uuid
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        handle:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataMap'
+        inArchive:
+          type: boolean
+        discoverable:
+          type: boolean
+        withdrawn:
+          type: boolean
+        lastModified:
+          type: string
+          format: date-time
+        entityType:
+          type: string
+          nullable: true
+        type:
+          type: string
+          enum:
+          - item
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+    PagedResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+        page:
+          $ref: '#/components/schemas/PageInfo'
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+    Collection:
+      type: object
+      description: A DSpace collection (a container of items).
+      properties:
+        id:
+          type: string
+          format: uuid
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        handle:
+          type: string
+          example: 18452/20731
+        metadata:
+          $ref: '#/components/schemas/MetadataMap'
+        archivedItemsCount:
+          type: integer
+        type:
+          type: string
+          enum:
+          - collection
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+    MetadataValue:
+      type: object
+      description: A single DSpace metadata value entry.
+      properties:
+        value:
+          type: string
+        language:
+          type: string
+          nullable: true
+        authority:
+          type: string
+          nullable: true
+        confidence:
+          type: integer
+        place:
+          type: integer
+      required:
+      - value
+    Community:
+      type: object
+      description: A DSpace community (a grouping of collections and sub-communities).
+      properties:
+        id:
+          type: string
+          format: uuid
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        handle:
+          type: string
+          example: 18452/21664
+        metadata:
+          $ref: '#/components/schemas/MetadataMap'
+        archivedItemsCount:
+          type: integer
+        type:
+          type: string
+          enum:
+          - community
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+  parameters:
+    uuid:
+      name: uuid
+      in: path
+      required: true
+      description: UUID of the resource
+      schema:
+        type: string
+        format: uuid
+    page:
+      name: page
+      in: query
+      description: Zero-based page index
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    size:
+      name: size
+      in: query
+      description: Page size
+      schema:
+        type: integer
+        minimum: 1
+        default: 20

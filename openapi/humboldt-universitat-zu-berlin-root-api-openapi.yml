@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: edoc-Server DSpace REST API (Humboldt-Universität zu Berlin) Core Root API
+  description: Public, read-oriented subset of the DSpace REST API powering the edoc-Server Open Access institutional repository of Humboldt-Universität zu Berlin. The repository runs DSpace 8 and exposes communities, collections, items, and a discovery search as HAL/JSON resources. This description was authored from the live API responses observed at the base URL; only publicly reachable, unauthenticated read endpoints are documented here. Write, submission, workflow, and authenticated endpoints exist in DSpace but are intentionally omitted because they require authentication and are not publicly self-service.
+  version: '8.4'
+  contact:
+    name: edoc-Server, University Library, Humboldt-Universität zu Berlin
+    url: https://edoc-info.hu-berlin.de/en
+  license:
+    name: DSpace BSD License
+    url: https://github.com/DSpace/DSpace/blob/main/LICENSE
+servers:
+- url: https://edoc.hu-berlin.de/server/api
+  description: edoc-Server production REST API
+tags:
+- name: Root
+  description: API root and capability discovery
+paths:
+  /:
+    get:
+      tags:
+      - Root
+      summary: API root / capability discovery
+      description: Returns the HAL root document advertising the DSpace name and version and the set of available endpoint links.
+      operationId: getApiRoot
+      responses:
+        '200':
+          description: HAL root document
+          content:
+            application/hal+json:
+              schema:
+                type: object
+                properties:
+                  dspaceVersion:
+                    type: string
+                    example: DSpace 8.4-SNAPSHOT
+                  dspaceName:
+                    type: string
+                    example: edoc-Server
+                  dspaceUI:
+                    type: string
+                    format: uri
+                  dspaceServer:
+                    type: string
+                    format: uri
+                  _links:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/Link'
+components:
+  schemas:
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
