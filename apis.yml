@@ -13,9 +13,21 @@ description: >-
   department also maintains a public GitHub organization (UB-HU-Berlin). No
   consolidated, self-service public API developer portal was confirmed.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/humboldt-universitat-zu-berlin.png
 url: https://raw.githubusercontent.com/api-evangelist/humboldt-universitat-zu-berlin/refs/heads/main/apis.yml
 tags:
   - Education
@@ -29,71 +41,132 @@ created: '2026-06-03'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: humboldt-universitat-zu-berlin:edoc-rest
-    name: edoc-Server DSpace REST API
-    description: >-
-      Public REST API of the edoc Open Access publication server, the
-      institutional repository of Humboldt-Universität zu Berlin. The repository
-      runs on DSpace 7, whose Server REST API exposes communities, collections,
-      items, and bitstreams as HAL/JSON resources.
-    humanURL: https://edoc-info.hu-berlin.de/en
-    baseURL: https://edoc.hu-berlin.de/server/api
-    tags: [ Open Access, Repository, DSpace, Research, Library ]
-    properties:
-      - type: Documentation
-        url: https://edoc-info.hu-berlin.de/en
-      - type: Website
-        url: https://edoc.hu-berlin.de/
-      - type: OpenAPI
-        url: openapi/humboldt-universitat-zu-berlin-edoc-rest.yaml
-      - type: x-json-schema
-        url: json-schema/humboldt-universitat-zu-berlin-item-schema.json
-      - type: x-json-schema
-        url: json-schema/humboldt-universitat-zu-berlin-community-schema.json
-      - type: x-json-schema
-        url: json-schema/humboldt-universitat-zu-berlin-collection-schema.json
-      - type: x-vocabulary
-        url: vocabulary/humboldt-universitat-zu-berlin-vocabulary.yml
-      - type: x-rules
-        url: rules/humboldt-universitat-zu-berlin-rules.yml
-      - type: x-json-ld
-        url: json-ld/humboldt-universitat-zu-berlin-context.jsonld
-  - aid: humboldt-universitat-zu-berlin:edoc-oai
-    name: edoc-Server OAI-PMH Interface
-    description: >-
-      Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH 2.0)
-      endpoint for the edoc institutional repository, allowing public harvesting
-      of metadata for theses, dissertations, articles, and research data.
-    humanURL: https://edoc-info.hu-berlin.de/en
-    baseURL: https://edoc.hu-berlin.de/server/oai/request
-    tags: [ OAI-PMH, Metadata Harvesting, Open Access, Repository ]
-    properties:
-      - type: Documentation
-        url: https://edoc-info.hu-berlin.de/en
-  - aid: humboldt-universitat-zu-berlin:primo-discovery
-    name: University Library Primus Discovery (Ex Libris Primo/Alma)
-    description: >-
-      The University Library's central search portal, Primus, is built on the
-      Ex Libris Primo discovery service backed by Alma. Primo/Alma provide open
-      REST APIs for discovery and resource management; API access at HU Berlin
-      is governed by the library and Ex Libris and is not openly self-service.
-    humanURL: https://www.ub.hu-berlin.de/en/literature-search/catalogues/catalogues
-    tags: [ Library, Discovery, Primo, Alma, Catalog ]
-    properties:
-      - type: Documentation
-        url: https://www.ub.hu-berlin.de/en/literature-search/catalogues/catalogues
-  - aid: humboldt-universitat-zu-berlin:shibboleth-sso
-    name: HU-IAM Shibboleth Single Sign-On (SAML)
-    description: >-
-      Identity and access management at Humboldt-Universität zu Berlin uses
-      Shibboleth/SAML single sign-on, operated by the Computer- und
-      Medienservice (CMS). Service-provider integration is documented for
-      university service operators rather than offered as a public API.
-    humanURL: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
-    tags: [ Identity, SSO, Shibboleth, SAML, Authentication ]
-    properties:
-      - type: Documentation
-        url: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
+- aid: humboldt-universitat-zu-berlin:edoc-oai
+  name: edoc-Server OAI-PMH Interface
+  description: >-
+    Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH 2.0) endpoint for the edoc institutional
+    repository, allowing public harvesting of metadata for theses, dissertations, articles, and research
+    data.
+  humanURL: https://edoc-info.hu-berlin.de/en
+  baseURL: https://edoc.hu-berlin.de/server/oai/request
+  tags:
+  - OAI-PMH
+  - Metadata Harvesting
+  - Open Access
+  - Repository
+  properties:
+  - type: Documentation
+    url: https://edoc-info.hu-berlin.de/en
+- aid: humboldt-universitat-zu-berlin:primo-discovery
+  name: University Library Primus Discovery (Ex Libris Primo/Alma)
+  description: >-
+    The University Library's central search portal, Primus, is built on the Ex Libris Primo discovery
+    service backed by Alma. Primo/Alma provide open REST APIs for discovery and resource management; API
+    access at HU Berlin is governed by the library and Ex Libris and is not openly self-service.
+  humanURL: https://www.ub.hu-berlin.de/en/literature-search/catalogues/catalogues
+  tags:
+  - Library
+  - Discovery
+  - Primo
+  - Alma
+  - Catalog
+  properties:
+  - type: Documentation
+    url: https://www.ub.hu-berlin.de/en/literature-search/catalogues/catalogues
+- aid: humboldt-universitat-zu-berlin:shibboleth-sso
+  name: HU-IAM Shibboleth Single Sign-On (SAML)
+  description: >-
+    Identity and access management at Humboldt-Universität zu Berlin uses Shibboleth/SAML single sign-on,
+    operated by the Computer- und Medienservice (CMS). Service-provider integration is documented for
+    university service operators rather than offered as a public API.
+  humanURL: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
+  tags:
+  - Identity
+  - SSO
+  - Shibboleth
+  - SAML
+  - Authentication
+  properties:
+  - type: Documentation
+    url: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
+- aid: humboldt-universitat-zu-berlin:humboldt-universitat-zu-berlin-core-api
+  name: Humboldt-Universität zu Berlin Core API
+  description: Core repository resources (communities, collections, items)
+  humanURL: https://edoc-info.hu-berlin.de/en
+  baseURL: https://edoc.hu-berlin.de/server/api
+  tags:
+  - Core
+  properties:
+  - type: OpenAPI
+    url: openapi/humboldt-universitat-zu-berlin-core-api-openapi.yml
+  - type: Documentation
+    url: https://edoc-info.hu-berlin.de/en
+  - type: Website
+    url: https://edoc.hu-berlin.de/
+  - type: x-json-schema
+    url: json-schema/humboldt-universitat-zu-berlin-item-schema.json
+  - type: x-json-schema
+    url: json-schema/humboldt-universitat-zu-berlin-community-schema.json
+  - type: x-json-schema
+    url: json-schema/humboldt-universitat-zu-berlin-collection-schema.json
+  - type: x-vocabulary
+    url: vocabulary/humboldt-universitat-zu-berlin-vocabulary.yml
+  - type: x-rules
+    url: rules/humboldt-universitat-zu-berlin-rules.yml
+  - type: x-json-ld
+    url: json-ld/humboldt-universitat-zu-berlin-context.jsonld
+- aid: humboldt-universitat-zu-berlin:humboldt-universitat-zu-berlin-discovery-api
+  name: Humboldt-Universität zu Berlin Discovery API
+  description: Search and discovery over indexed repository objects
+  humanURL: https://edoc-info.hu-berlin.de/en
+  baseURL: https://edoc.hu-berlin.de/server/api
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/humboldt-universitat-zu-berlin-discovery-api-openapi.yml
+  - type: Documentation
+    url: https://edoc-info.hu-berlin.de/en
+  - type: Website
+    url: https://edoc.hu-berlin.de/
+  - type: x-json-schema
+    url: json-schema/humboldt-universitat-zu-berlin-item-schema.json
+  - type: x-json-schema
+    url: json-schema/humboldt-universitat-zu-berlin-community-schema.json
+  - type: x-json-schema
+    url: json-schema/humboldt-universitat-zu-berlin-collection-schema.json
+  - type: x-vocabulary
+    url: vocabulary/humboldt-universitat-zu-berlin-vocabulary.yml
+  - type: x-rules
+    url: rules/humboldt-universitat-zu-berlin-rules.yml
+  - type: x-json-ld
+    url: json-ld/humboldt-universitat-zu-berlin-context.jsonld
+- aid: humboldt-universitat-zu-berlin:humboldt-universitat-zu-berlin-root-api
+  name: Humboldt-Universität zu Berlin Root API
+  description: API root and capability discovery
+  humanURL: https://edoc-info.hu-berlin.de/en
+  baseURL: https://edoc.hu-berlin.de/server/api
+  tags:
+  - Root
+  properties:
+  - type: OpenAPI
+    url: openapi/humboldt-universitat-zu-berlin-root-api-openapi.yml
+  - type: Documentation
+    url: https://edoc-info.hu-berlin.de/en
+  - type: Website
+    url: https://edoc.hu-berlin.de/
+  - type: x-json-schema
+    url: json-schema/humboldt-universitat-zu-berlin-item-schema.json
+  - type: x-json-schema
+    url: json-schema/humboldt-universitat-zu-berlin-community-schema.json
+  - type: x-json-schema
+    url: json-schema/humboldt-universitat-zu-berlin-collection-schema.json
+  - type: x-vocabulary
+    url: vocabulary/humboldt-universitat-zu-berlin-vocabulary.yml
+  - type: x-rules
+    url: rules/humboldt-universitat-zu-berlin-rules.yml
+  - type: x-json-ld
+    url: json-ld/humboldt-universitat-zu-berlin-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/humboldt-universitat-zu-berlin-agentic-access.yml
