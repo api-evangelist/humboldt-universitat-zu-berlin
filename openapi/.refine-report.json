@@ -1,0 +1,18 @@
+{
+  "provider": "humboldt-universitat-zu-berlin",
+  "sources": [
+    "humboldt-universitat-zu-berlin-core-api-openapi.yml",
+    "humboldt-universitat-zu-berlin-discovery-api-openapi.yml",
+    "humboldt-universitat-zu-berlin-root-api-openapi.yml"
+  ],
+  "outputs": [
+    "humboldt-universitat-zu-berlin-core-api-openapi.yml",
+    "humboldt-universitat-zu-berlin-discovery-api-openapi.yml",
+    "humboldt-universitat-zu-berlin-root-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
