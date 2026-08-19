@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "edoc-Server DSpace REST API (Humboldt-Universität zu Berlin) Core Root API",
+    "version": "8.4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Root",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "API root / capability discovery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://edoc.hu-berlin.de/server/api/"
+          },
+          "docs": "Returns the HAL root document advertising the DSpace name and version and the set of available endpoint links."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,748 @@
+{
+  "item": [
+    {
+      "id": "648cb30a-7a5b-4485-810b-16d865410bc1",
+      "name": "Core",
+      "description": {
+        "content": "Core repository resources (communities, collections, items)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3974544-f2bf-4ec2-8bc8-50ed5d7af360",
+          "name": "List communities",
+          "request": {
+            "name": "List communities",
+            "description": {
+              "content": "Returns a paginated HAL collection of top-level and child communities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "communities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Zero-based page index"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Page size"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ab69ea8-cf15-4523-9eb7-d880cdb874ca",
+              "name": "Paginated list of communities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "communities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"communities\": [\n      {\n        \"id\": \"568dcb66-b8c0-a651-51e1-e36f7dc6c0d7\",\n        \"uuid\": \"53fb6d20-8316-6de1-10f0-98e4634a9972\",\n        \"name\": \"string\",\n        \"handle\": \"18452/21664\",\n        \"metadata\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"archivedItemsCount\": 4236,\n        \"type\": \"community\",\n        \"_links\": {\n          \"key_0\": {\n            \"href\": \"https://fzNrNzuTXyhSnms.qpnPT.HAvK1.aOEUu0.kWjTqB,Qf9qoUqb4rXsTcsdpfV\"\n          },\n          \"key_1\": {\n            \"href\": \"http://MuGHG.qwkwi4yGKC6xUwxPdhow\"\n          }\n        }\n      },\n      {\n        \"id\": \"2a176796-aa7a-7b32-07fd-4f6a0872eedc\",\n        \"uuid\": \"67d6c2cb-6b25-c32d-24a6-9deee3e0fd38\",\n        \"name\": \"string\",\n        \"handle\": \"18452/21664\",\n        \"metadata\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"archivedItemsCount\": 2599,\n        \"type\": \"community\",\n        \"_links\": {\n          \"key_0\": {\n            \"href\": \"http://rhTKvlhavb.nihzuKK1At7XhbA7A4l6cbgy.epcusRgfM1Wh6O\"\n          },\n          \"key_1\": {\n            \"href\": \"http://xYKMW.xmvhMjde.jfetMhsd5xZfZ4VkWngp,.Wq8H4zy.kkf\"\n          }\n        }\n      }\n    ]\n  },\n  \"page\": {\n    \"size\": 8981,\n    \"totalElements\": 6345,\n    \"totalPages\": 4278,\n    \"number\": 3007\n  },\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"https://FgKcuVbtxKNfdm.wrnnMpAjgn,64e\"\n    },\n    \"key_1\": {\n      \"href\": \"http://nToYYuyJUYWNwDEDMtECAmfEyGSu.doAuVcuo5aN,Zlq8nFw\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "335c39da-5584-4274-823d-4e8c9e7fbd9f",
+          "name": "Get a community by UUID",
+          "request": {
+            "name": "Get a community by UUID",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "communities",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) UUID of the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1dc74b16-5510-4913-a0f7-8489898dd205",
+              "name": "A single community",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "communities",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0e25cdb4-600f-9136-378e-6e85ab675765\",\n  \"uuid\": \"9b1f022a-aa59-19c0-262c-c8f40facb8de\",\n  \"name\": \"string\",\n  \"handle\": \"18452/21664\",\n  \"metadata\": {\n    \"key_0\": [\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 4418,\n        \"place\": 9136\n      },\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 6134,\n        \"place\": 3009\n      }\n    ],\n    \"key_1\": [\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 6228,\n        \"place\": 9878\n      },\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 8731,\n        \"place\": 9068\n      }\n    ]\n  },\n  \"archivedItemsCount\": 9508,\n  \"type\": \"community\",\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"https://ARmPwM.smeY,xZP3DQCfq4-D3m5EGqAxjnU3+5LcZtYJ5p7quL+w\"\n    },\n    \"key_1\": {\n      \"href\": \"http://pcgIBpNFeRSnGddWwMAbSPLPvJIkeb.vbiwP2Tqtok.dz\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f36e9f6-b831-4210-b463-583dbea88c42",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "communities",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the resource"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dc0e6d4-70e9-4fe0-979e-25faaf45197e",
+          "name": "List collections within a community",
+          "request": {
+            "name": "List collections within a community",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "communities",
+                ":uuid",
+                "collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Zero-based page index"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Page size"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) UUID of the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2ce440a-d041-4ee0-88e6-288601fedbf7",
+              "name": "Paginated list of collections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "communities",
+                    ":uuid",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"collections\": [\n      {\n        \"id\": \"71f44b05-0871-6c91-e7bb-658e8496b4c5\",\n        \"uuid\": \"712f504b-b66b-cc5c-1ac8-540ec918eaca\",\n        \"name\": \"string\",\n        \"handle\": \"18452/20731\",\n        \"metadata\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"archivedItemsCount\": 3921,\n        \"type\": \"collection\",\n        \"_links\": {\n          \"key_0\": {\n            \"href\": \"http://HLPuvy.cqvqnKJQAL+iSMyjKiT\"\n          },\n          \"key_1\": {\n            \"href\": \"http://VALqVkkMQkawmQCC.foeklk0HYgBO8fzTNEL3F-bZAg7vWT4\"\n          }\n        }\n      },\n      {\n        \"id\": \"f66ab443-a68a-b800-59ff-c22501b7131b\",\n        \"uuid\": \"b16aa41f-835a-44e6-4f26-8d89de96594a\",\n        \"name\": \"string\",\n        \"handle\": \"18452/20731\",\n        \"metadata\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_2\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_3\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"archivedItemsCount\": 3263,\n        \"type\": \"collection\",\n        \"_links\": {\n          \"key_0\": {\n            \"href\": \"https://GdU.raey9qmzTTbKrFz4whkKVOjhb-s1MCvk+F2vnXFijL3mv,Uo1XiOokCrQ6GV-ia\"\n          },\n          \"key_1\": {\n            \"href\": \"http://jVxTRzJyUTRB.vkzc5HIzS+vmtmiBaE9mEkV6rdUjHuMga.HEH-ixZ\"\n          }\n        }\n      }\n    ]\n  },\n  \"page\": {\n    \"size\": 3847,\n    \"totalElements\": 6782,\n    \"totalPages\": 5798,\n    \"number\": 1485\n  },\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"http://wfwaegfOXaInz.zoyHK.vN9W3xfjHP.ytJEYQwd6\"\n    },\n    \"key_1\": {\n      \"href\": \"http://SRrYcQaGuByFcOjMRNvwtcifvjbm.wexyPGRuT42fyU9YZOpyBF.VMJVEk6l-w5S9Fp-BWjdAI\"\n    },\n    \"key_2\": {\n      \"href\": \"https://pvrrRy.hcshrfCqtn4mAA4Pj5tDYfEJLyHb1l0SJ7.0si2d\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06046a25-20f3-4ef2-aec1-5837d58e5f14",
+          "name": "List collections",
+          "request": {
+            "name": "List collections",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Zero-based page index"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Page size"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "69b23716-c0ca-4ff5-89c1-8aeb7675f36a",
+              "name": "Paginated list of collections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"collections\": [\n      {\n        \"id\": \"71f44b05-0871-6c91-e7bb-658e8496b4c5\",\n        \"uuid\": \"712f504b-b66b-cc5c-1ac8-540ec918eaca\",\n        \"name\": \"string\",\n        \"handle\": \"18452/20731\",\n        \"metadata\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"archivedItemsCount\": 3921,\n        \"type\": \"collection\",\n        \"_links\": {\n          \"key_0\": {\n            \"href\": \"http://HLPuvy.cqvqnKJQAL+iSMyjKiT\"\n          },\n          \"key_1\": {\n            \"href\": \"http://VALqVkkMQkawmQCC.foeklk0HYgBO8fzTNEL3F-bZAg7vWT4\"\n          }\n        }\n      },\n      {\n        \"id\": \"f66ab443-a68a-b800-59ff-c22501b7131b\",\n        \"uuid\": \"b16aa41f-835a-44e6-4f26-8d89de96594a\",\n        \"name\": \"string\",\n        \"handle\": \"18452/20731\",\n        \"metadata\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_2\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_3\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"archivedItemsCount\": 3263,\n        \"type\": \"collection\",\n        \"_links\": {\n          \"key_0\": {\n            \"href\": \"https://GdU.raey9qmzTTbKrFz4whkKVOjhb-s1MCvk+F2vnXFijL3mv,Uo1XiOokCrQ6GV-ia\"\n          },\n          \"key_1\": {\n            \"href\": \"http://jVxTRzJyUTRB.vkzc5HIzS+vmtmiBaE9mEkV6rdUjHuMga.HEH-ixZ\"\n          }\n        }\n      }\n    ]\n  },\n  \"page\": {\n    \"size\": 3847,\n    \"totalElements\": 6782,\n    \"totalPages\": 5798,\n    \"number\": 1485\n  },\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"http://wfwaegfOXaInz.zoyHK.vN9W3xfjHP.ytJEYQwd6\"\n    },\n    \"key_1\": {\n      \"href\": \"http://SRrYcQaGuByFcOjMRNvwtcifvjbm.wexyPGRuT42fyU9YZOpyBF.VMJVEk6l-w5S9Fp-BWjdAI\"\n    },\n    \"key_2\": {\n      \"href\": \"https://pvrrRy.hcshrfCqtn4mAA4Pj5tDYfEJLyHb1l0SJ7.0si2d\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4bcdc5e-e529-42ac-92ac-40d8fc2ab26c",
+          "name": "Get a collection by UUID",
+          "request": {
+            "name": "Get a collection by UUID",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "collections",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) UUID of the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f0bd6f1-f5ee-4451-a4f6-dde68546ab28",
+              "name": "A single collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "collections",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"c3623e66-5901-f84c-75ec-fdff878ce0c6\",\n  \"uuid\": \"af5bea45-0fe1-bd80-07d3-486533814d4b\",\n  \"name\": \"string\",\n  \"handle\": \"18452/20731\",\n  \"metadata\": {\n    \"key_0\": [\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 1232,\n        \"place\": 3839\n      },\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 1743,\n        \"place\": 5834\n      }\n    ],\n    \"key_1\": [\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 797,\n        \"place\": 9703\n      },\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 2532,\n        \"place\": 6271\n      }\n    ]\n  },\n  \"archivedItemsCount\": 4636,\n  \"type\": \"collection\",\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"http://EZjsSQVMhLUtcQMXwyiwYK.htbpr6U6Dm8WJVrcWuXvcLmiG3DHrLxvX9+sXWwEbZleSBhL0JWY99cVvgyeiqPa9\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6b96966-9063-47a5-b10a-6654342a5d17",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "collections",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the resource"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f7f511e-87f0-4a85-a21a-655e464abc68",
+          "name": "Get an item by UUID",
+          "request": {
+            "name": "Get an item by UUID",
+            "description": {
+              "content": "Returns a single archived item. Item listing endpoints in DSpace are access-controlled; individual archived (publicly discoverable) items are retrievable by UUID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "items",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) UUID of the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e867445-8aa4-4adf-ab3e-57f51583402d",
+              "name": "A single item",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "items",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0e6d57fd-313c-a50b-ee93-37f6204a3a43\",\n  \"uuid\": \"abadade8-8cb6-d327-e1c0-1a235a52e219\",\n  \"name\": \"string\",\n  \"handle\": \"string\",\n  \"metadata\": {\n    \"key_0\": [\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 788,\n        \"place\": 7755\n      },\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 4202,\n        \"place\": 7218\n      }\n    ],\n    \"key_1\": [\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 3137,\n        \"place\": 4967\n      },\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 2788,\n        \"place\": 9765\n      }\n    ],\n    \"key_2\": [\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 5244,\n        \"place\": 4555\n      },\n      {\n        \"value\": \"string\",\n        \"language\": \"string\",\n        \"authority\": \"string\",\n        \"confidence\": 7750,\n        \"place\": 544\n      }\n    ]\n  },\n  \"inArchive\": true,\n  \"discoverable\": true,\n  \"withdrawn\": false,\n  \"lastModified\": \"1987-05-18T21:54:57.198Z\",\n  \"entityType\": \"string\",\n  \"type\": \"item\",\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"http://UeXHFmEWtXHHsftujpDLBzl.mzdrEyVHByBCtmaBLBbNsUIucRFRg\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "468cc60d-9bbb-42b1-9b54-fd1962f49cba",
+              "name": "Unauthorized (item not publicly accessible)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "items",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the resource"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "992b89cc-6176-45f0-b83e-d251ef87579f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "items",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the resource"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://edoc.hu-berlin.de/server/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "346c34a9-3d56-4cf3-9b1f-dbd7d66d7a32",
+    "name": "edoc-Server DSpace REST API (Humboldt-Universität zu Berlin) Core API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public, read-oriented subset of the DSpace REST API powering the edoc-Server Open Access institutional repository of Humboldt-Universität zu Berlin. The repository runs DSpace 8 and exposes communities, collections, items, and a discovery search as HAL/JSON resources. This description was authored from the live API responses observed at the base URL; only publicly reachable, unauthenticated read endpoints are documented here. Write, submission, workflow, and authenticated endpoints exist in DSpace but are intentionally omitted because they require authentication and are not publicly self-service.\n\nContact Support:\n Name: edoc-Server, University Library, Humboldt-Universität zu Berlin",
+      "type": "text/plain"
+    }
+  }
+}

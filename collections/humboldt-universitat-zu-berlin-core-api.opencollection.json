@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "edoc-Server DSpace REST API (Humboldt-Universität zu Berlin) Core API",
+    "version": "8.4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Core",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List communities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://edoc.hu-berlin.de/server/api/core/communities",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based page index"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              }
+            ]
+          },
+          "docs": "Returns a paginated HAL collection of top-level and child communities."
+        },
+        {
+          "info": {
+            "name": "Get a community by UUID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://edoc.hu-berlin.de/server/api/core/communities/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the resource"
+              }
+            ]
+          },
+          "docs": "Get a community by UUID"
+        },
+        {
+          "info": {
+            "name": "List collections within a community",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://edoc.hu-berlin.de/server/api/core/communities/:uuid/collections",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the resource"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based page index"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              }
+            ]
+          },
+          "docs": "List collections within a community"
+        },
+        {
+          "info": {
+            "name": "List collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://edoc.hu-berlin.de/server/api/core/collections",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based page index"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              }
+            ]
+          },
+          "docs": "List collections"
+        },
+        {
+          "info": {
+            "name": "Get a collection by UUID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://edoc.hu-berlin.de/server/api/core/collections/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the resource"
+              }
+            ]
+          },
+          "docs": "Get a collection by UUID"
+        },
+        {
+          "info": {
+            "name": "Get an item by UUID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://edoc.hu-berlin.de/server/api/core/items/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the resource"
+              }
+            ]
+          },
+          "docs": "Returns a single archived item. Item listing endpoints in DSpace are access-controlled; individual archived (publicly discoverable) items are retrievable by UUID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

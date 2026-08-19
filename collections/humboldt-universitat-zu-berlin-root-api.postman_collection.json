@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "b25740cc-b948-4df5-b3f6-69893a8e01b6",
+      "name": "Root",
+      "description": {
+        "content": "API root and capability discovery",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c081cb55-8824-4d3c-bd49-de792564a922",
+          "name": "API root / capability discovery",
+          "request": {
+            "name": "API root / capability discovery",
+            "description": {
+              "content": "Returns the HAL root document advertising the DSpace name and version and the set of available endpoint links.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8e29f39-d768-44ab-a9ae-a2f9c0cadc59",
+              "name": "HAL root document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"dspaceVersion\": \"DSpace 8.4-SNAPSHOT\",\n  \"dspaceName\": \"edoc-Server\",\n  \"dspaceUI\": \"http://YNCbzzavGOyu.snqfdlKfOXj1Z,zG,rkKI,C.EM7+FwRYAJDFN3QtiWM-QCcdUvrrllH20wmY-kuoHu\",\n  \"dspaceServer\": \"https://HJMAryKHBgIfRTpfp.rlAzK.ZyDz7cUGoE.c7peMaLz4JreT2NwDr8ATTTDoq.kjFeEbNU6bbOl9P\",\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"http://AiFAeGdrSsatn.aovi0CjeHoZduGafYtMFANcMJTxOLJ.3QtdNgQqBhM\"\n    },\n    \"key_1\": {\n      \"href\": \"https://iCIMYnKkhfPRHHCQIuUCR.adgCo3lHzduHQWpubeRJ5-OsnXof0Kv4\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://edoc.hu-berlin.de/server/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e3474a53-d53f-4398-a697-396098cddd22",
+    "name": "edoc-Server DSpace REST API (Humboldt-Universität zu Berlin) Core Root API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public, read-oriented subset of the DSpace REST API powering the edoc-Server Open Access institutional repository of Humboldt-Universität zu Berlin. The repository runs DSpace 8 and exposes communities, collections, items, and a discovery search as HAL/JSON resources. This description was authored from the live API responses observed at the base URL; only publicly reachable, unauthenticated read endpoints are documented here. Write, submission, workflow, and authenticated endpoints exist in DSpace but are intentionally omitted because they require authentication and are not publicly self-service.\n\nContact Support:\n Name: edoc-Server, University Library, Humboldt-Universität zu Berlin",
+      "type": "text/plain"
+    }
+  }
+}

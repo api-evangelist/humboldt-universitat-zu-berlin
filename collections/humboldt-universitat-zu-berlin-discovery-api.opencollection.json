@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "edoc-Server DSpace REST API (Humboldt-Universität zu Berlin) Core Discovery API",
+    "version": "8.4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discovery search over indexed objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://edoc.hu-berlin.de/server/api/discover/search/objects",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "dsoType",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to a DSpace object type"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "UUID of a community or collection to scope the search to"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort expression, e.g. \"dc.title,ASC\""
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based page index"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              }
+            ]
+          },
+          "docs": "Full-text and faceted search across indexed repository objects (items, collections, communities). Returns an embedded searchResult with objects and facets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
