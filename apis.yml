@@ -180,6 +180,9 @@ apis:
   - type: x-json-ld
     url: json-ld/humboldt-universitat-zu-berlin-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/humboldt-universitat-zu-berlin-capability-edges.yml
+    name: Humboldt-Universität zu Berlin Business Capability Map
   - type: AgenticAccess
     url: agentic-access/humboldt-universitat-zu-berlin-agentic-access.yml
   - type: VulnerabilityDisclosure

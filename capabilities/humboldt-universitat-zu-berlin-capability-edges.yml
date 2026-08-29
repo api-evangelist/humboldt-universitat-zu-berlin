@@ -1,0 +1,26 @@
+slug: humboldt-universitat-zu-berlin
+provider: Humboldt-Universität zu Berlin
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Education
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Core
+  spec_file: humboldt-universitat-zu-berlin-core-api-openapi.yml
+  capability_id: BC-4780.40
+  capability_id_l1: BC-4780
+  capability_name: Scholarly Output & Publication Management
+  confidence: 0.7
+  evidence: '''Public, read-oriented subset of the DSpace REST API powering the edoc-Server Open Access
+    institutional repository''; GET /core/communities, GET /core/items/{uuid} ''Get an item by UUID'''
+  reason: Serves the community/collection/item hierarchy of an Open Access institutional publication repository
+    — stewardship and dissemination of scholarly output. Mapped to Scholarly Output & Publication Management;
+    some chance the honest home is library information resource operations.
