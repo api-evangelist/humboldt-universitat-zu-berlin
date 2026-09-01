@@ -1,166 +1,149 @@
 ---
 aid: humboldt-universitat-zu-berlin
 name: Humboldt-Universität zu Berlin
+x-type: university
+x-category: Public Research University
 description: >-
-  Humboldt-Universität zu Berlin (HU Berlin) is a public research university in
-  Berlin, Germany, ranked #126 in the QS World University Rankings 2025. Its
-  public developer/API footprint is centered on scholarly and library
-  infrastructure rather than a unified developer portal: the edoc Open Access
-  publication server runs on DSpace 7 and exposes a public REST API and an
-  OAI-PMH metadata interface, the University Library's Primus discovery service
-  is built on Ex Libris Primo/Alma (which provides open APIs), and access
-  management uses Shibboleth/SAML single sign-on. The University Library IT
-  department also maintains a public GitHub organization (UB-HU-Berlin). No
-  consolidated, self-service public API developer portal was confirmed.
+  Humboldt-Universität zu Berlin (HU Berlin) is a public research university in Berlin,
+  Germany, founded in 1810 and ranked #126 in the QS World University Rankings 2025. Like
+  almost every university, HU is a federation of buyers rather than an API producer: it
+  publishes no developer portal, no API terms, no SDKs and not one OpenAPI of its own, and
+  every OpenAPI in this repository was authored by API Evangelist from live probes and says
+  so in its own info.description. What HU does genuinely operate is scholarly and identity
+  infrastructure on its own hosts. The edoc-Server institutional repository at
+  edoc.hu-berlin.de (DSpace 8, self-hosted by the University Library) exposes an
+  unauthenticated read REST API and a full OAI-PMH 2.0 interface advertising eighteen
+  metadata formats including oai_datacite. The LAUDATIO-Repository for historical linguistic
+  corpora, run by the Corpus Linguistics department with the Computer- und Medienservice,
+  publishes a documented, versioned, public REST API over its Elasticsearch index. HU
+  operates its own Shibboleth/SAML identity provider, registered in DFN-AAI and published to
+  eduGAIN, and is a DataCite member (VLEF) minting 32,950 DOIs under its own prefix 10.18452
+  across ten registered repositories. Its library discovery is an Ex Libris Primo/Alma tenancy
+  and is not HU engineering. Note for machine consumers: hu-berlin.de web hosts, including
+  the GitLab instance at scm.cms.hu-berlin.de, sit behind an Anubis proof-of-work bot wall
+  that returns HTTP 200 with a JavaScript challenge instead of content — the data hosts
+  (edoc, LAUDATIO) do not.
 type: Index
 deliveryModel:
   model: saas
   open_source: false
-  commercial: true
+  commercial: false
   callable_host: true
-  label: Hosted service · you call their endpoint
+  label: Institution-operated endpoints · you call their host
   confidence: high
   source:
   - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+  - probe
+  generated: '2026-09-01'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: unknown
+  onboarding: none
   trial: false
-  try_now: false
-  public: false
-  label: Free
-  confidence: medium
+  try_now: true
+  public: true
+  label: Free · unauthenticated public read, no registration offered
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+  - probe
+  generated: '2026-09-01'
+  method: probed
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/humboldt-universitat-zu-berlin.png
 url: https://raw.githubusercontent.com/api-evangelist/humboldt-universitat-zu-berlin/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
   - University
+  - Higher Education
+  - Education
   - Research
-  - Open Access
-  - Library
   - Germany
-created: '2026-06-03'
-modified: '2026-06-03'
-specificationVersion: '0.23'
-apis:
-- aid: humboldt-universitat-zu-berlin:edoc-oai
-  name: edoc-Server OAI-PMH Interface
-  description: >-
-    Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH 2.0) endpoint for the edoc institutional
-    repository, allowing public harvesting of metadata for theses, dissertations, articles, and research
-    data.
-  humanURL: https://edoc-info.hu-berlin.de/en
-  baseURL: https://edoc.hu-berlin.de/server/oai/request
-  tags:
-  - OAI-PMH
-  - Metadata Harvesting
+  - Berlin
+  - Institutional Repository
+  - Research Data
   - Open Access
-  - Repository
-  properties:
-  - type: Documentation
-    url: https://edoc-info.hu-berlin.de/en
-- aid: humboldt-universitat-zu-berlin:primo-discovery
-  name: University Library Primus Discovery (Ex Libris Primo/Alma)
-  description: >-
-    The University Library's central search portal, Primus, is built on the Ex Libris Primo discovery
-    service backed by Alma. Primo/Alma provide open REST APIs for discovery and resource management; API
-    access at HU Berlin is governed by the library and Ex Libris and is not openly self-service.
-  humanURL: https://www.ub.hu-berlin.de/en/literature-search/catalogues/catalogues
-  tags:
   - Library
-  - Discovery
-  - Primo
-  - Alma
-  - Catalog
-  properties:
-  - type: Documentation
-    url: https://www.ub.hu-berlin.de/en/literature-search/catalogues/catalogues
-- aid: humboldt-universitat-zu-berlin:shibboleth-sso
-  name: HU-IAM Shibboleth Single Sign-On (SAML)
-  description: >-
-    Identity and access management at Humboldt-Universität zu Berlin uses Shibboleth/SAML single sign-on,
-    operated by the Computer- und Medienservice (CMS). Service-provider integration is documented for
-    university service operators rather than offered as a public API.
-  humanURL: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
-  tags:
-  - Identity
-  - SSO
+  - Identity Federation
+  - OAI-PMH
+  - DataCite
   - Shibboleth
-  - SAML
-  - Authentication
-  properties:
-  - type: Documentation
-    url: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
-- aid: humboldt-universitat-zu-berlin:humboldt-universitat-zu-berlin-core-api
-  name: Humboldt-Universität zu Berlin Core API
-  description: Core repository resources (communities, collections, items)
+  - Corpus Linguistics
+created: '2026-06-03'
+modified: '2026-09-01'
+specificationVersion: '0.23'
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Four institution-operated machine-readable surfaces were found and probed live on
+    2026-09-01: the edoc-Server DSpace REST API and its OAI-PMH 2.0 interface (both on
+    edoc.hu-berlin.de, HU's own domain), the LAUDATIO-Repository REST API, and HU's own
+    Shibboleth/SAML identity provider as registered in DFN-AAI and eduGAIN. HU's DataCite
+    membership (VLEF, ROR 01hcx6992, prefix 10.18452, 32,950 DOIs, 10 registered repositories)
+    is recorded as a registry membership. Three surfaces are recorded as relationships without
+    saving anyone else's contract: the Ex Libris Primo/Alma library discovery tenancy, the
+    NOMAD Repository (nomad-lab.eu — a FAIRmat consortium platform whose DOIs HU mints under
+    tib.hu), and the GenderOpen repository shared with FU and TU Berlin. HU itself publishes no
+    OpenAPI, no developer portal, no API terms of service and no SDKs; the June 2026 profile of
+    this repo claimed the edoc surface as three separate APIs, which is one surface counted
+    three times, and that has been collapsed. One measurement caveat worth carrying forward:
+    every hu-berlin.de WEB host probed (www., ub., cms., edoc-info., scm.) sits behind an
+    Anubis proof-of-work bot wall that answers HTTP 200 with a JavaScript challenge page, so
+    a status-code-only probe reads them as live content and a /llms.txt probe of
+    www.hu-berlin.de returns 200 for a challenge page rather than an llms.txt. The DATA hosts
+    (edoc.hu-berlin.de, media.hu-berlin.de, agnes.hu-berlin.de, laudatio-repository.org) are
+    not walled, which is why coverage is `covered` and not `bot_blocked`.
+  evidence:
+  - url: https://edoc.hu-berlin.de/server/api
+    status: 200
+  - url: https://edoc.hu-berlin.de/server/oai/request?verb=Identify
+    status: 200
+  - url: https://www.laudatio-repository.org/api/elasticapi/v1/corpora/latest/count
+    status: 200
+  - url: https://technical.edugain.org/api.php?action=list_entities&format=json
+    status: 200
+  - url: https://api.datacite.org/providers/vlef
+    status: 200
+  - url: https://www.hu-berlin.de/.well-known/security.txt
+    status: 200
+  - url: https://scm.cms.hu-berlin.de/api/v4/version
+    status: 200
+    note: HTTP 200 but the body is an Anubis proof-of-work challenge, not the GitLab API response.
+  - url: https://www.hu-berlin.de/llms.txt
+    status: 200
+    note: HTTP 200 but the body is an Anubis challenge page; HU publishes no llms.txt.
+  - url: https://edoc.hu-berlin.de/server/api/core/items?size=1
+    status: 401
+  generated: '2026-09-01'
+  method: probed
+apis:
+- aid: humboldt-universitat-zu-berlin:edoc-rest
+  name: edoc-Server DSpace REST API
+  x-operator: institution
+  description: >-
+    Public, unauthenticated read API of the edoc-Server, the Open Access institutional
+    repository of Humboldt-Universität zu Berlin, operated by the University Library's
+    Arbeitsgruppe Elektronisches Publizieren. Live probe 2026-09-01 returned dspaceName
+    "edoc-Server", dspaceVersion "DSpace 8.5-SNAPSHOT"; /core/communities and
+    /discover/search/objects both answered 200, /core/items answered 401. The repository
+    software is DSpace (open source, BSD, self-hosted) — the software is a third party's, the
+    host, the deployment and the content are HU's, which is why this is `institution` and not
+    `tenant`. HU publishes no OpenAPI for it; the three contracts below were authored by API
+    Evangelist from live responses and each says so in its own description. They are three
+    tag-split views of ONE surface, not three APIs — the June 2026 profile listed them as
+    three separate entries and that inflation has been corrected here.
   humanURL: https://edoc-info.hu-berlin.de/en
   baseURL: https://edoc.hu-berlin.de/server/api
   tags:
-  - Core
+  - Institutional Repository
+  - DSpace
+  - Open Access
+  - Research Data
   properties:
   - type: OpenAPI
     url: openapi/humboldt-universitat-zu-berlin-core-api-openapi.yml
-  - type: Documentation
-    url: https://edoc-info.hu-berlin.de/en
-  - type: Website
-    url: https://edoc.hu-berlin.de/
-  - type: x-json-schema
-    url: json-schema/humboldt-universitat-zu-berlin-item-schema.json
-  - type: x-json-schema
-    url: json-schema/humboldt-universitat-zu-berlin-community-schema.json
-  - type: x-json-schema
-    url: json-schema/humboldt-universitat-zu-berlin-collection-schema.json
-  - type: x-vocabulary
-    url: vocabulary/humboldt-universitat-zu-berlin-vocabulary.yml
-  - type: x-rules
-    url: rules/humboldt-universitat-zu-berlin-rules.yml
-  - type: x-json-ld
-    url: json-ld/humboldt-universitat-zu-berlin-context.jsonld
-- aid: humboldt-universitat-zu-berlin:humboldt-universitat-zu-berlin-discovery-api
-  name: Humboldt-Universität zu Berlin Discovery API
-  description: Search and discovery over indexed repository objects
-  humanURL: https://edoc-info.hu-berlin.de/en
-  baseURL: https://edoc.hu-berlin.de/server/api
-  tags:
-  - Discovery
-  properties:
   - type: OpenAPI
     url: openapi/humboldt-universitat-zu-berlin-discovery-api-openapi.yml
-  - type: Documentation
-    url: https://edoc-info.hu-berlin.de/en
-  - type: Website
-    url: https://edoc.hu-berlin.de/
-  - type: x-json-schema
-    url: json-schema/humboldt-universitat-zu-berlin-item-schema.json
-  - type: x-json-schema
-    url: json-schema/humboldt-universitat-zu-berlin-community-schema.json
-  - type: x-json-schema
-    url: json-schema/humboldt-universitat-zu-berlin-collection-schema.json
-  - type: x-vocabulary
-    url: vocabulary/humboldt-universitat-zu-berlin-vocabulary.yml
-  - type: x-rules
-    url: rules/humboldt-universitat-zu-berlin-rules.yml
-  - type: x-json-ld
-    url: json-ld/humboldt-universitat-zu-berlin-context.jsonld
-- aid: humboldt-universitat-zu-berlin:humboldt-universitat-zu-berlin-root-api
-  name: Humboldt-Universität zu Berlin Root API
-  description: API root and capability discovery
-  humanURL: https://edoc-info.hu-berlin.de/en
-  baseURL: https://edoc.hu-berlin.de/server/api
-  tags:
-  - Root
-  properties:
   - type: OpenAPI
     url: openapi/humboldt-universitat-zu-berlin-root-api-openapi.yml
   - type: Documentation
@@ -179,7 +162,240 @@ apis:
     url: rules/humboldt-universitat-zu-berlin-rules.yml
   - type: x-json-ld
     url: json-ld/humboldt-universitat-zu-berlin-context.jsonld
+- aid: humboldt-universitat-zu-berlin:edoc-oai
+  name: edoc-Server OAI-PMH 2.0 Interface
+  x-operator: institution
+  description: >-
+    OAI-PMH 2.0 metadata harvesting endpoint for the edoc institutional repository, on HU's
+    own host. ?verb=Identify returned 200 on 2026-09-01 with repositoryName "edoc-Server",
+    repositoryIdentifier edoc.hu-berlin.de, adminEmail edocadmins@lists.hu-berlin.de,
+    earliestDatestamp 2017-06-15 and granularity YYYY-MM-DDThh:mm:ssZ. Eighteen metadata
+    formats are advertised — didl, mods, xMetaDissPlus, ore, mets, xoai, dim, uketd_dc, qdc,
+    oai_dc, rdf, oai_datacite, epicur, marc, marc21_huub, xMetaDissPlusPlus, etdms — and sets
+    are exposed by Dewey class, document type and researchData. This is the strongest
+    standards-conformant surface HU operates.
+  humanURL: https://edoc-info.hu-berlin.de/en
+  baseURL: https://edoc.hu-berlin.de/server/oai/request
+  tags:
+  - OAI-PMH
+  - Metadata Harvesting
+  - Open Access
+  - Institutional Repository
+  properties:
+  - type: OpenAPI
+    url: openapi/humboldt-universitat-zu-berlin-oai-pmh-api-openapi.yml
+  - type: Documentation
+    url: https://edoc-info.hu-berlin.de/en
+  - type: Website
+    url: https://edoc.hu-berlin.de/
+  - type: x-conformance
+    url: conformance/humboldt-universitat-zu-berlin-conformance.yml
+- aid: humboldt-universitat-zu-berlin:laudatio-repository-api
+  name: LAUDATIO-Repository REST API
+  x-operator: institution
+  description: >-
+    Documented, versioned, public read API of the LAUDATIO-Repository (Long-term Access and
+    Usage of Deeply Annotated Information), the open-access research-data repository for
+    historical linguistic corpora operated by HU's Department of Corpus Linguistics with the
+    Computer- und Medienservice. HU publishes its own API reference at /docs/elasticapi
+    naming 32 paths across corpora, documents and annotations; live probe 2026-09-01 returned
+    30 corpora, 5,284 documents and 1,160 annotation layers. Classified `institution` despite
+    the laudatio-repository.org domain because every ownership signal is HU's: the site
+    imprint and privacy policy point at hu-berlin.de, sign-in authenticates HU accounts
+    against HU's Shibboleth IdP, the source is on HU's own GitLab, and DOIs are minted under
+    HU's DataCite membership as repository tib.hu-laudatio. This surface was missed entirely
+    by the June 2026 profile.
+  humanURL: https://www.laudatio-repository.org/docs/elasticapi
+  baseURL: https://www.laudatio-repository.org/api/elasticapi/v1
+  tags:
+  - Research Data
+  - Corpus Linguistics
+  - Open Access
+  - Repository
+  properties:
+  - type: OpenAPI
+    url: openapi/humboldt-universitat-zu-berlin-laudatio-repository-api-openapi.yml
+  - type: APIReference
+    url: https://www.laudatio-repository.org/docs/elasticapi
+  - type: Website
+    url: https://www.laudatio-repository.org/
+  - type: SourceCode
+    url: https://scm.cms.hu-berlin.de/hu-berlin-laudatio-repository/laudatio-repository
+- aid: humboldt-universitat-zu-berlin:shibboleth-idp
+  name: HU-IAM Shibboleth Identity Provider (SAML 2.0)
+  x-operator: federation
+  description: >-
+    Humboldt-Universität zu Berlin operates its own Shibboleth/SAML identity provider,
+    entityID https://shib-idp.cms.hu-berlin.de/idp/shibboleth, registered by DFN-AAI
+    (registrationAuthority https://www.aai.dfn.de) and published to eduGAIN with
+    IDPSSODescriptor and AttributeAuthorityDescriptor roles and eccs_status 1, read from the
+    eduGAIN technical database on 2026-09-01. A second HU entity, the service provider
+    https://korpling-auth.german.hu-berlin.de/shibboleth, is registered in the same
+    federation. The federation aggregate is shared by definition; the IdP behind it is HU's
+    own, which is why this is recorded rather than discarded. CAVEAT: the IdP's own metadata
+    URL returns 200 XML but serves Shibboleth's stock example metadata with entityID
+    idp-dev.cms.hu-berlin.de — the authoritative metadata is the DFN-AAI aggregate.
+  humanURL: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
+  baseURL: https://shib-idp.cms.hu-berlin.de/idp/shibboleth
+  x-entity-id: https://shib-idp.cms.hu-berlin.de/idp/shibboleth
+  x-federation: DFN-AAI (https://www.aai.dfn.de), published to eduGAIN
+  tags:
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - Single Sign-On
+  properties:
+  - type: Documentation
+    url: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
+  - type: x-conformance
+    url: conformance/humboldt-universitat-zu-berlin-conformance.yml
+- aid: humboldt-universitat-zu-berlin:datacite-membership
+  name: DataCite Membership (VLEF)
+  x-operator: registry
+  description: >-
+    Humboldt-Universität zu Berlin is a DataCite member — provider symbol VLEF,
+    memberType consortium_organization, country DE, ROR https://ror.org/01hcx6992, created
+    2020-12-11 — with its own DOI prefix 10.18452 carrying 32,950 DOIs and ten registered
+    repositories: tib.hu-edoc (edoc-Server), tib.hu-laudatio (LAUDATIO), tib.hu-mr (Media
+    Repository), tib.hu-genop (Gender Open), tib.hu (NOMAD), tib.hu-agep, tib.topoi,
+    vlef.hu-fmb, vlef.clio-online and gesis.qjb. This is a membership recorded as a fact about
+    HU; api.datacite.org is DataCite's contract and is deliberately NOT saved here.
+  humanURL: https://commons.datacite.org/providers/vlef
+  x-registrant-id: vlef
+  x-doi-prefix: '10.18452'
+  x-ror: https://ror.org/01hcx6992
+  tags:
+  - DataCite
+  - DOI
+  - Persistent Identifiers
+  - Registry Membership
+  properties:
+  - type: Registry
+    url: https://api.datacite.org/providers/vlef
+  - type: Registry
+    url: https://ror.org/01hcx6992
+  - type: x-conformance
+    url: conformance/humboldt-universitat-zu-berlin-conformance.yml
+- aid: humboldt-universitat-zu-berlin:hu-gitlab
+  name: HU Berlin GitLab (scm.cms.hu-berlin.de)
+  x-operator: institution
+  description: >-
+    HU's Computer- und Medienservice operates its own GitLab instance at
+    scm.cms.hu-berlin.de, hosting institutional projects including the LAUDATIO repository
+    source. GitLab exposes a REST API at /api/v4, but that contract is GitLab's product API,
+    not HU's engineering, so it is not saved here — only the deployment is recorded. Every
+    path on this host, /api/v4 included, currently answers HTTP 200 with an Anubis
+    proof-of-work challenge rather than content, so the API is effectively unreachable to a
+    non-browser client.
+  humanURL: https://scm.cms.hu-berlin.de/
+  baseURL: https://scm.cms.hu-berlin.de/api/v4
+  tags:
+  - Source Control
+  - GitLab
+  - Research Software
+  properties:
+  - type: Website
+    url: https://scm.cms.hu-berlin.de/hu-berlin-laudatio-repository/laudatio-repository
+- aid: humboldt-universitat-zu-berlin:primo-discovery
+  name: University Library Primus Discovery (Ex Libris Primo/Alma tenancy)
+  x-operator: tenant
+  description: >-
+    Primus, the University Library's central search portal, is an Ex Libris Primo deployment
+    backed by Alma, served from hu-berlin.primo.exlibrisgroup.com under view
+    49KOBV_HUB:HUB_UB within the KOBV network. The tenancy is real and it is HU's library
+    catalog; the Primo/Alma REST contract belongs to Ex Libris and is deliberately not saved
+    under this institution. API access is governed by the library and Ex Libris and is not
+    self-service.
+  humanURL: https://www.ub.hu-berlin.de/en/literature-search/catalogues/catalogues
+  x-tenant-url: https://hu-berlin.primo.exlibrisgroup.com/discovery/search?vid=49KOBV_HUB:HUB_UB
+  x-vendor: Ex Libris (Clarivate)
+  tags:
+  - Library
+  - Discovery
+  - Primo
+  - Alma
+  - Catalog
+  properties:
+  - type: Documentation
+    url: https://www.ub.hu-berlin.de/en/literature-search/catalogues/catalogues
+  - type: Website
+    url: https://hu-berlin.primo.exlibrisgroup.com/discovery/search?vid=49KOBV_HUB:HUB_UB
+- aid: humboldt-universitat-zu-berlin:nomad-repository
+  name: NOMAD Repository (FAIRmat) — HU DOI tenancy
+  x-operator: tenant
+  description: >-
+    The NOMAD Repository for computational materials-science data is registered under HU
+    Berlin's DataCite membership as repository tib.hu ("HU Berlin - NOMAD Repository"), and
+    the NOMAD Laboratory / FAIRmat consortium is led from HU's Department of Physics. NOMAD
+    publishes a live OpenAPI at nomad-lab.eu with 87 paths, but that contract is the
+    consortium platform's — info.title "NOMAD API", version "v1, NOMAD 1.4.3.post1", a
+    relative server (/prod/v1/api/v1), no contact and no HU identity anywhere in it — so it is
+    recorded as a relationship and NOT saved under this institution.
+  humanURL: https://nomad-lab.eu/
+  x-tenant-url: https://nomad-lab.eu/prod/v1/api/v1/openapi.json
+  x-datacite-repository: tib.hu
+  tags:
+  - Research Data
+  - Materials Science
+  - FAIR Data
+  - Repository
+  properties:
+  - type: Website
+    url: https://nomad-lab.eu/prod/v1/api/v1/openapi.json
+- aid: humboldt-universitat-zu-berlin:genderopen
+  name: GenderOpen Repositorium — HU DOI tenancy
+  x-operator: tenant
+  description: >-
+    GenderOpen is the shared open-access repository for gender studies run jointly by the
+    Freie Universität Berlin, Humboldt-Universität zu Berlin and Technische Universität
+    Berlin. It is a DSpace deployment on genderopen.de with a live OAI-PMH endpoint at
+    /server/oai/request (200 on 2026-09-01), and its DOIs are registered under HU's DataCite
+    membership as tib.hu-genop. Shared with two peer institutions, so the relationship is
+    recorded and no contract is saved here.
+  humanURL: https://www.genderopen.de/
+  baseURL: https://www.genderopen.de/server/oai/request
+  x-datacite-repository: tib.hu-genop
+  tags:
+  - Open Access
+  - Repository
+  - OAI-PMH
+  - Gender Studies
+  properties:
+  - type: Website
+    url: https://www.genderopen.de/
 common:
+  - type: Website
+    url: https://www.hu-berlin.de/en
+  - type: ResearchRepository
+    url: https://edoc.hu-berlin.de/
+  - type: ResearchRepository
+    url: https://www.laudatio-repository.org/
+  - type: ResearchRepository
+    url: https://media.hu-berlin.de/
+  - type: LibraryCatalog
+    url: https://hu-berlin.primo.exlibrisgroup.com/discovery/search?vid=49KOBV_HUB:HUB_UB
+  - type: CourseCatalog
+    url: https://agnes.hu-berlin.de/
+  - type: IdentityFederation
+    url: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
+  - type: AITooling
+    url: https://ai-skills.hu-berlin.de/
+  - type: APIReference
+    url: https://www.laudatio-repository.org/docs/elasticapi
+  - type: GitHubOrganization
+    url: https://github.com/UB-HU-Berlin
+  - type: VCS
+    url: https://scm.cms.hu-berlin.de/
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/humboldt-universitat-zu-berlin/
+  - type: TermsOfService
+    url: https://www.hu-berlin.de/de/hu/impressum
+  - type: PrivacyPolicy
+    url: https://www.hu-berlin.de/de/hu/impressum/datenschutzerklaerung
+  - type: Authentication
+    url: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
+  - type: Conformance
+    url: conformance/humboldt-universitat-zu-berlin-conformance.yml
   - type: CapabilityMap
     url: capabilities/humboldt-universitat-zu-berlin-capability-edges.yml
     name: Humboldt-Universität zu Berlin Business Capability Map
@@ -189,14 +405,6 @@ common:
     url: security/humboldt-universitat-zu-berlin-vulnerability-disclosure.yml
   - type: DomainSecurity
     url: security/humboldt-universitat-zu-berlin-domain-security.yml
-  - type: Website
-    url: https://www.hu-berlin.de/en
-  - type: GitHub
-    url: https://github.com/UB-HU-Berlin
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/humboldt-universitat-zu-berlin/
-  - type: Authentication
-    url: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
   - type: Plans
     url: plans/humboldt-universitat-zu-berlin-plans-pricing.yml
   - type: RateLimits
