@@ -1,20 +1,83 @@
-generated: '2026-07-15'
+generated: '2026-09-16'
 method: generated
-source: openapi/humboldt-universitat-zu-berlin-edoc-rest.yaml
+source: openapi/humboldt-universitat-zu-berlin-annotations-api-openapi.yml, openapi/humboldt-universitat-zu-berlin-core-api-openapi.yml,
+  openapi/humboldt-universitat-zu-berlin-corpora-api-openapi.yml, openapi/humboldt-universitat-zu-berlin-discovery-api-openapi.yml,
+  openapi/humboldt-universitat-zu-berlin-documents-api-openapi.yml, openapi/humboldt-universitat-zu-berlin-oai-pmh-api-openapi.yml,
+  openapi/humboldt-universitat-zu-berlin-root-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 8
+  operations: 31
   by_action_class:
-    connected: 8
+    connected: 31
   by_consequence:
-    read: 8
+    read: 31
   human_in_the_loop_required: 0
 operations:
-- path: /
+- path: /api/elasticapi/v1/annotations
   method: get
-  operationId: getApiRoot
+  operationId: listAnnotations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/annotations/latest/count
+  method: get
+  operationId: countLatestAnnotations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/annotations/latest/{from}/{size}
+  method: get
+  operationId: listLatestAnnotations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/annotations/latest/searchMain
+  method: get
+  operationId: searchLatestAnnotations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/annotations/latest/searchMain/count
+  method: get
+  operationId: countSearchLatestAnnotations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/annotations/{id}/{index}
+  method: get
+  operationId: getAnnotation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/annotations/{id}/{index}/documents
+  method: get
+  operationId: getAnnotationDocuments
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -82,9 +145,179 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /api/elasticapi/v1/corpora
+  method: get
+  operationId: listCorpora
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/corpora/latest/count
+  method: get
+  operationId: countLatestCorpora
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/corpora/latest/{from}/{size}
+  method: get
+  operationId: listLatestCorpora
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/corpora/latest/searchMain
+  method: get
+  operationId: searchLatestCorpora
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/corpora/latest/searchMain/count
+  method: get
+  operationId: countSearchLatestCorpora
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/corpora/{id}/{index}
+  method: get
+  operationId: getCorpus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/corpora/{id}/{index}/documents
+  method: get
+  operationId: getCorpusDocuments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/corpora/{id}/{index}/annotations
+  method: get
+  operationId: getCorpusAnnotations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /discover/search/objects
   method: get
   operationId: searchObjects
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/documents
+  method: get
+  operationId: listDocuments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/documents/latest/count
+  method: get
+  operationId: countLatestDocuments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/documents/latest/{from}/{size}
+  method: get
+  operationId: listLatestDocuments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/documents/latest/searchMain
+  method: get
+  operationId: searchLatestDocuments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/documents/latest/searchMain/count
+  method: get
+  operationId: countSearchLatestDocuments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/documents/{id}/{index}
+  method: get
+  operationId: getDocument
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/elasticapi/v1/documents/{id}/{index}/annotations
+  method: get
+  operationId: getDocumentAnnotations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /request
+  method: get
+  operationId: oaiRequest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /
+  method: get
+  operationId: getApiRoot
   x-agentic-access:
     action-class: connected
     consequence: read
