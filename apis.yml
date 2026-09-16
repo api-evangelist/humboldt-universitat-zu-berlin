@@ -121,17 +121,15 @@ apis:
   name: edoc-Server DSpace REST API
   x-operator: institution
   description: >-
-    Public, unauthenticated read API of the edoc-Server, the Open Access institutional
-    repository of Humboldt-Universität zu Berlin, operated by the University Library's
-    Arbeitsgruppe Elektronisches Publizieren. Live probe 2026-09-01 returned dspaceName
-    "edoc-Server", dspaceVersion "DSpace 8.5-SNAPSHOT"; /core/communities and
-    /discover/search/objects both answered 200, /core/items answered 401. The repository
-    software is DSpace (open source, BSD, self-hosted) — the software is a third party's, the
-    host, the deployment and the content are HU's, which is why this is `institution` and not
-    `tenant`. HU publishes no OpenAPI for it; the three contracts below were authored by API
-    Evangelist from live responses and each says so in its own description. They are three
-    tag-split views of ONE surface, not three APIs — the June 2026 profile listed them as
-    three separate entries and that inflation has been corrected here.
+    Public, unauthenticated read API of the edoc-Server, the Open Access institutional repository of Humboldt-Universität
+    zu Berlin, operated by the University Library's Arbeitsgruppe Elektronisches Publizieren. Live probe
+    2026-09-01 returned dspaceName "edoc-Server", dspaceVersion "DSpace 8.5-SNAPSHOT"; /core/communities
+    and /discover/search/objects both answered 200, /core/items answered 401. The repository software
+    is DSpace (open source, BSD, self-hosted) — the software is a third party's, the host, the deployment
+    and the content are HU's, which is why this is `institution` and not `tenant`. HU publishes no OpenAPI
+    for it; the three contracts below were authored by API Evangelist from live responses and each says
+    so in its own description. They are three tag-split views of ONE surface, not three APIs — the June
+    2026 profile listed them as three separate entries and that inflation has been corrected here.
   humanURL: https://edoc-info.hu-berlin.de/en
   baseURL: https://edoc.hu-berlin.de/server/api
   tags:
@@ -166,13 +164,12 @@ apis:
   name: edoc-Server OAI-PMH 2.0 Interface
   x-operator: institution
   description: >-
-    OAI-PMH 2.0 metadata harvesting endpoint for the edoc institutional repository, on HU's
-    own host. ?verb=Identify returned 200 on 2026-09-01 with repositoryName "edoc-Server",
-    repositoryIdentifier edoc.hu-berlin.de, adminEmail edocadmins@lists.hu-berlin.de,
-    earliestDatestamp 2017-06-15 and granularity YYYY-MM-DDThh:mm:ssZ. Eighteen metadata
-    formats are advertised — didl, mods, xMetaDissPlus, ore, mets, xoai, dim, uketd_dc, qdc,
-    oai_dc, rdf, oai_datacite, epicur, marc, marc21_huub, xMetaDissPlusPlus, etdms — and sets
-    are exposed by Dewey class, document type and researchData. This is the strongest
+    OAI-PMH 2.0 metadata harvesting endpoint for the edoc institutional repository, on HU's own host.
+    ?verb=Identify returned 200 on 2026-09-01 with repositoryName "edoc-Server", repositoryIdentifier
+    edoc.hu-berlin.de, adminEmail edocadmins@lists.hu-berlin.de, earliestDatestamp 2017-06-15 and granularity
+    YYYY-MM-DDThh:mm:ssZ. Eighteen metadata formats are advertised — didl, mods, xMetaDissPlus, ore, mets,
+    xoai, dim, uketd_dc, qdc, oai_dc, rdf, oai_datacite, epicur, marc, marc21_huub, xMetaDissPlusPlus,
+    etdms — and sets are exposed by Dewey class, document type and researchData. This is the strongest
     standards-conformant surface HU operates.
   humanURL: https://edoc-info.hu-berlin.de/en
   baseURL: https://edoc.hu-berlin.de/server/oai/request
@@ -190,51 +187,18 @@ apis:
     url: https://edoc.hu-berlin.de/
   - type: x-conformance
     url: conformance/humboldt-universitat-zu-berlin-conformance.yml
-- aid: humboldt-universitat-zu-berlin:laudatio-repository-api
-  name: LAUDATIO-Repository REST API
-  x-operator: institution
-  description: >-
-    Documented, versioned, public read API of the LAUDATIO-Repository (Long-term Access and
-    Usage of Deeply Annotated Information), the open-access research-data repository for
-    historical linguistic corpora operated by HU's Department of Corpus Linguistics with the
-    Computer- und Medienservice. HU publishes its own API reference at /docs/elasticapi
-    naming 32 paths across corpora, documents and annotations; live probe 2026-09-01 returned
-    30 corpora, 5,284 documents and 1,160 annotation layers. Classified `institution` despite
-    the laudatio-repository.org domain because every ownership signal is HU's: the site
-    imprint and privacy policy point at hu-berlin.de, sign-in authenticates HU accounts
-    against HU's Shibboleth IdP, the source is on HU's own GitLab, and DOIs are minted under
-    HU's DataCite membership as repository tib.hu-laudatio. This surface was missed entirely
-    by the June 2026 profile.
-  humanURL: https://www.laudatio-repository.org/docs/elasticapi
-  baseURL: https://www.laudatio-repository.org/api/elasticapi/v1
-  tags:
-  - Research Data
-  - Corpus Linguistics
-  - Open Access
-  - Repository
-  properties:
-  - type: OpenAPI
-    url: openapi/humboldt-universitat-zu-berlin-laudatio-repository-api-openapi.yml
-  - type: APIReference
-    url: https://www.laudatio-repository.org/docs/elasticapi
-  - type: Website
-    url: https://www.laudatio-repository.org/
-  - type: SourceCode
-    url: https://scm.cms.hu-berlin.de/hu-berlin-laudatio-repository/laudatio-repository
 - aid: humboldt-universitat-zu-berlin:shibboleth-idp
   name: HU-IAM Shibboleth Identity Provider (SAML 2.0)
   x-operator: federation
   description: >-
-    Humboldt-Universität zu Berlin operates its own Shibboleth/SAML identity provider,
-    entityID https://shib-idp.cms.hu-berlin.de/idp/shibboleth, registered by DFN-AAI
-    (registrationAuthority https://www.aai.dfn.de) and published to eduGAIN with
-    IDPSSODescriptor and AttributeAuthorityDescriptor roles and eccs_status 1, read from the
-    eduGAIN technical database on 2026-09-01. A second HU entity, the service provider
-    https://korpling-auth.german.hu-berlin.de/shibboleth, is registered in the same
-    federation. The federation aggregate is shared by definition; the IdP behind it is HU's
-    own, which is why this is recorded rather than discarded. CAVEAT: the IdP's own metadata
-    URL returns 200 XML but serves Shibboleth's stock example metadata with entityID
-    idp-dev.cms.hu-berlin.de — the authoritative metadata is the DFN-AAI aggregate.
+    Humboldt-Universität zu Berlin operates its own Shibboleth/SAML identity provider, entityID https://shib-idp.cms.hu-berlin.de/idp/shibboleth,
+    registered by DFN-AAI (registrationAuthority https://www.aai.dfn.de) and published to eduGAIN with
+    IDPSSODescriptor and AttributeAuthorityDescriptor roles and eccs_status 1, read from the eduGAIN technical
+    database on 2026-09-01. A second HU entity, the service provider https://korpling-auth.german.hu-berlin.de/shibboleth,
+    is registered in the same federation. The federation aggregate is shared by definition; the IdP behind
+    it is HU's own, which is why this is recorded rather than discarded. CAVEAT: the IdP's own metadata
+    URL returns 200 XML but serves Shibboleth's stock example metadata with entityID idp-dev.cms.hu-berlin.de
+    — the authoritative metadata is the DFN-AAI aggregate.
   humanURL: https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth
   baseURL: https://shib-idp.cms.hu-berlin.de/idp/shibboleth
   x-entity-id: https://shib-idp.cms.hu-berlin.de/idp/shibboleth
@@ -253,13 +217,12 @@ apis:
   name: DataCite Membership (VLEF)
   x-operator: registry
   description: >-
-    Humboldt-Universität zu Berlin is a DataCite member — provider symbol VLEF,
-    memberType consortium_organization, country DE, ROR https://ror.org/01hcx6992, created
-    2020-12-11 — with its own DOI prefix 10.18452 carrying 32,950 DOIs and ten registered
-    repositories: tib.hu-edoc (edoc-Server), tib.hu-laudatio (LAUDATIO), tib.hu-mr (Media
-    Repository), tib.hu-genop (Gender Open), tib.hu (NOMAD), tib.hu-agep, tib.topoi,
-    vlef.hu-fmb, vlef.clio-online and gesis.qjb. This is a membership recorded as a fact about
-    HU; api.datacite.org is DataCite's contract and is deliberately NOT saved here.
+    Humboldt-Universität zu Berlin is a DataCite member — provider symbol VLEF, memberType consortium_organization,
+    country DE, ROR https://ror.org/01hcx6992, created 2020-12-11 — with its own DOI prefix 10.18452 carrying
+    32,950 DOIs and ten registered repositories: tib.hu-edoc (edoc-Server), tib.hu-laudatio (LAUDATIO),
+    tib.hu-mr (Media Repository), tib.hu-genop (Gender Open), tib.hu (NOMAD), tib.hu-agep, tib.topoi,
+    vlef.hu-fmb, vlef.clio-online and gesis.qjb. This is a membership recorded as a fact about HU; api.datacite.org
+    is DataCite's contract and is deliberately NOT saved here.
   humanURL: https://commons.datacite.org/providers/vlef
   x-registrant-id: vlef
   x-doi-prefix: '10.18452'
@@ -280,12 +243,11 @@ apis:
   name: HU Berlin GitLab (scm.cms.hu-berlin.de)
   x-operator: institution
   description: >-
-    HU's Computer- und Medienservice operates its own GitLab instance at
-    scm.cms.hu-berlin.de, hosting institutional projects including the LAUDATIO repository
-    source. GitLab exposes a REST API at /api/v4, but that contract is GitLab's product API,
-    not HU's engineering, so it is not saved here — only the deployment is recorded. Every
-    path on this host, /api/v4 included, currently answers HTTP 200 with an Anubis
-    proof-of-work challenge rather than content, so the API is effectively unreachable to a
+    HU's Computer- und Medienservice operates its own GitLab instance at scm.cms.hu-berlin.de, hosting
+    institutional projects including the LAUDATIO repository source. GitLab exposes a REST API at /api/v4,
+    but that contract is GitLab's product API, not HU's engineering, so it is not saved here — only the
+    deployment is recorded. Every path on this host, /api/v4 included, currently answers HTTP 200 with
+    an Anubis proof-of-work challenge rather than content, so the API is effectively unreachable to a
     non-browser client.
   humanURL: https://scm.cms.hu-berlin.de/
   baseURL: https://scm.cms.hu-berlin.de/api/v4
@@ -300,12 +262,11 @@ apis:
   name: University Library Primus Discovery (Ex Libris Primo/Alma tenancy)
   x-operator: tenant
   description: >-
-    Primus, the University Library's central search portal, is an Ex Libris Primo deployment
-    backed by Alma, served from hu-berlin.primo.exlibrisgroup.com under view
-    49KOBV_HUB:HUB_UB within the KOBV network. The tenancy is real and it is HU's library
-    catalog; the Primo/Alma REST contract belongs to Ex Libris and is deliberately not saved
-    under this institution. API access is governed by the library and Ex Libris and is not
-    self-service.
+    Primus, the University Library's central search portal, is an Ex Libris Primo deployment backed by
+    Alma, served from hu-berlin.primo.exlibrisgroup.com under view 49KOBV_HUB:HUB_UB within the KOBV network.
+    The tenancy is real and it is HU's library catalog; the Primo/Alma REST contract belongs to Ex Libris
+    and is deliberately not saved under this institution. API access is governed by the library and Ex
+    Libris and is not self-service.
   humanURL: https://www.ub.hu-berlin.de/en/literature-search/catalogues/catalogues
   x-tenant-url: https://hu-berlin.primo.exlibrisgroup.com/discovery/search?vid=49KOBV_HUB:HUB_UB
   x-vendor: Ex Libris (Clarivate)
@@ -324,13 +285,12 @@ apis:
   name: NOMAD Repository (FAIRmat) — HU DOI tenancy
   x-operator: tenant
   description: >-
-    The NOMAD Repository for computational materials-science data is registered under HU
-    Berlin's DataCite membership as repository tib.hu ("HU Berlin - NOMAD Repository"), and
-    the NOMAD Laboratory / FAIRmat consortium is led from HU's Department of Physics. NOMAD
-    publishes a live OpenAPI at nomad-lab.eu with 87 paths, but that contract is the
-    consortium platform's — info.title "NOMAD API", version "v1, NOMAD 1.4.3.post1", a
-    relative server (/prod/v1/api/v1), no contact and no HU identity anywhere in it — so it is
-    recorded as a relationship and NOT saved under this institution.
+    The NOMAD Repository for computational materials-science data is registered under HU Berlin's DataCite
+    membership as repository tib.hu ("HU Berlin - NOMAD Repository"), and the NOMAD Laboratory / FAIRmat
+    consortium is led from HU's Department of Physics. NOMAD publishes a live OpenAPI at nomad-lab.eu
+    with 87 paths, but that contract is the consortium platform's — info.title "NOMAD API", version "v1,
+    NOMAD 1.4.3.post1", a relative server (/prod/v1/api/v1), no contact and no HU identity anywhere in
+    it — so it is recorded as a relationship and NOT saved under this institution.
   humanURL: https://nomad-lab.eu/
   x-tenant-url: https://nomad-lab.eu/prod/v1/api/v1/openapi.json
   x-datacite-repository: tib.hu
@@ -346,12 +306,11 @@ apis:
   name: GenderOpen Repositorium — HU DOI tenancy
   x-operator: tenant
   description: >-
-    GenderOpen is the shared open-access repository for gender studies run jointly by the
-    Freie Universität Berlin, Humboldt-Universität zu Berlin and Technische Universität
-    Berlin. It is a DSpace deployment on genderopen.de with a live OAI-PMH endpoint at
-    /server/oai/request (200 on 2026-09-01), and its DOIs are registered under HU's DataCite
-    membership as tib.hu-genop. Shared with two peer institutions, so the relationship is
-    recorded and no contract is saved here.
+    GenderOpen is the shared open-access repository for gender studies run jointly by the Freie Universität
+    Berlin, Humboldt-Universität zu Berlin and Technische Universität Berlin. It is a DSpace deployment
+    on genderopen.de with a live OAI-PMH endpoint at /server/oai/request (200 on 2026-09-01), and its
+    DOIs are registered under HU's DataCite membership as tib.hu-genop. Shared with two peer institutions,
+    so the relationship is recorded and no contract is saved here.
   humanURL: https://www.genderopen.de/
   baseURL: https://www.genderopen.de/server/oai/request
   x-datacite-repository: tib.hu-genop
@@ -363,6 +322,54 @@ apis:
   properties:
   - type: Website
     url: https://www.genderopen.de/
+- aid: humboldt-universitat-zu-berlin:humboldt-universitat-zu-berlin-annotations-api
+  name: Humboldt-Universität zu Berlin Annotations API
+  description: Annotation layers and their preparation metadata
+  humanURL: https://edoc-info.hu-berlin.de/en
+  baseURL: https://edoc.hu-berlin.de/server/api
+  tags:
+  - Annotations
+  properties:
+  - type: OpenAPI
+    url: openapi/humboldt-universitat-zu-berlin-annotations-api-openapi.yml
+  - type: APIReference
+    url: https://www.laudatio-repository.org/docs/elasticapi
+  - type: Website
+    url: https://www.laudatio-repository.org/
+  - type: SourceCode
+    url: https://scm.cms.hu-berlin.de/hu-berlin-laudatio-repository/laudatio-repository
+- aid: humboldt-universitat-zu-berlin:humboldt-universitat-zu-berlin-corpora-api
+  name: Humboldt-Universität zu Berlin Corpora API
+  description: Published historical corpora and their header metadata
+  humanURL: https://edoc-info.hu-berlin.de/en
+  baseURL: https://edoc.hu-berlin.de/server/api
+  tags:
+  - Corpora
+  properties:
+  - type: OpenAPI
+    url: openapi/humboldt-universitat-zu-berlin-corpora-api-openapi.yml
+  - type: APIReference
+    url: https://www.laudatio-repository.org/docs/elasticapi
+  - type: Website
+    url: https://www.laudatio-repository.org/
+  - type: SourceCode
+    url: https://scm.cms.hu-berlin.de/hu-berlin-laudatio-repository/laudatio-repository
+- aid: humboldt-universitat-zu-berlin:humboldt-universitat-zu-berlin-documents-api
+  name: Humboldt-Universität zu Berlin Documents API
+  description: Documents belonging to a published corpus
+  humanURL: https://edoc-info.hu-berlin.de/en
+  baseURL: https://edoc.hu-berlin.de/server/api
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/humboldt-universitat-zu-berlin-documents-api-openapi.yml
+  - type: APIReference
+    url: https://www.laudatio-repository.org/docs/elasticapi
+  - type: Website
+    url: https://www.laudatio-repository.org/
+  - type: SourceCode
+    url: https://scm.cms.hu-berlin.de/hu-berlin-laudatio-repository/laudatio-repository
 common:
   - type: Website
     url: https://www.hu-berlin.de/en
