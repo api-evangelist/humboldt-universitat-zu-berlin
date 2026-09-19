@@ -207,6 +207,11 @@ apis:
   - Identity Federation
   - Shibboleth
   - SAML
+  - SSO
+  tags_raw:
+  - Identity Federation
+  - Shibboleth
+  - SAML
   - Single Sign-On
   properties:
   - type: Documentation
@@ -328,6 +333,8 @@ apis:
   humanURL: https://edoc-info.hu-berlin.de/en
   baseURL: https://edoc.hu-berlin.de/server/api
   tags:
+  - Annotation
+  tags_raw:
   - Annotations
   properties:
   - type: OpenAPI
