@@ -1,0 +1,116 @@
+openapi: 3.2.0
+info:
+  title: edoc-Server 2.0 Interface (Humboldt-Universität zu Berlin)…
+  description: OAI-PMH 2.0 (Open Archives Initiative Protocol for Metadata Harvesting) interface of the edoc-Server, the Open Access institutional repository of Humboldt-Universität zu Berlin, operated by the University Library's Arbeitsgruppe Elektronisches Publizieren.
+  version: '2.0'
+  contact:
+    name: edoc-Server, Universitätsbibliothek, Humboldt-Universität zu Berlin
+    email: edocadmins@lists.hu-berlin.de
+    url: https://edoc-info.hu-berlin.de/en
+  termsOfService: https://www.hu-berlin.de/de/hu/impressum
+servers:
+- url: https://edoc.hu-berlin.de/server/oai
+  description: edoc-Server OAI-PMH production endpoint
+tags:
+- name: oai pmh
+  description: Open Archives Initiative Protocol for Metadata Harvesting, version 2.0
+paths:
+  /request:
+    get:
+      tags:
+      - oai pmh
+      summary: OAI-PMH 2.0 request endpoint
+      description: The single OAI-PMH entry point. The `verb` parameter selects one of the six protocol requests; the remaining parameters are the arguments that verb accepts. Every response is an OAI-PMH XML document in the http://www.openarchives.org/OAI/2.0/ namespace.
+      operationId: oaiRequest
+      parameters:
+      - name: verb
+        in: query
+        required: true
+        description: The OAI-PMH verb to invoke.
+        schema:
+          type: string
+          enum:
+          - Identify
+          - ListMetadataFormats
+          - ListSets
+          - ListIdentifiers
+          - ListRecords
+          - GetRecord
+      - name: metadataPrefix
+        in: query
+        required: false
+        description: Metadata format to return. Required for ListIdentifiers, ListRecords and GetRecord. The eighteen prefixes below were read from a live ListMetadataFormats response on 2026-09-01.
+        schema:
+          type: string
+          enum:
+          - didl
+          - mods
+          - xMetaDissPlus
+          - ore
+          - mets
+          - xoai
+          - dim
+          - uketd_dc
+          - qdc
+          - oai_dc
+          - rdf
+          - oai_datacite
+          - epicur
+          - marc
+          - marc21_huub
+          - xMetaDissPlusPlus
+          - etdms
+      - name: identifier
+        in: query
+        required: false
+        description: OAI identifier of a single record. Required for GetRecord. The repository uses the oai scheme with repositoryIdentifier edoc.hu-berlin.de, e.g. oai:edoc.hu-berlin.de:18452/1234.
+        schema:
+          type: string
+          example: oai:edoc.hu-berlin.de:18452/1234
+      - name: set
+        in: query
+        required: false
+        description: Restrict the request to one set. edoc advertises Dewey classes (ddc:800), document types (doc-type:report) and content sets such as researchData.
+        schema:
+          type: string
+          example: researchData
+      - name: from
+        in: query
+        required: false
+        description: Lower bound on record datestamp, in the repository's granularity.
+        schema:
+          type: string
+          example: '2026-01-01T00:00:00Z'
+      - name: until
+        in: query
+        required: false
+        description: Upper bound on record datestamp, in the repository's granularity.
+        schema:
+          type: string
+          example: '2026-09-01T00:00:00Z'
+      - name: resumptionToken
+        in: query
+        required: false
+        description: Flow-control token returned by a previous incomplete list response. Exclusive with every other argument except verb.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: An OAI-PMH XML response. Protocol-level failures (badVerb, badArgument, cannotDisseminateFormat, idDoesNotExist, noRecordsMatch, noSetHierarchy, badResumptionToken) are also returned with HTTP 200 and carry an <error> element, per the OAI-PMH 2.0 specification.
+          content:
+            text/xml:
+              schema:
+                type: string
+                format: xml
+              examples:
+                identify:
+                  summary: Identify response observed 2026-09-01
+                  value: "<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\">\n  <responseDate>2026-09-01T16:33:49Z</responseDate>\n  <request verb=\"Identify\">https://edoc.hu-berlin.de/server/oai/request</request>\n  <Identify>\n    <repositoryName>edoc-Server</repositoryName>\n    <baseURL>https://edoc.hu-berlin.de/server/oai/request</baseURL>\n    <protocolVersion>2.0</protocolVersion>\n    <adminEmail>edocadmins@lists.hu-berlin.de</adminEmail>\n    <earliestDatestamp>2017-06-15T06:37:59Z</earliestDatestamp>\n    <deletedRecord>transient</deletedRecord>\n    <granularity>YYYY-MM-DDThh:mm:ssZ</granularity>\n  </Identify>\n</OAI-PMH>\n"
+externalDocs:
+  description: OAI-PMH 2.0 protocol specification
+  url: https://www.openarchives.org/OAI/openarchivesprotocol.html
+x-method: derived
+x-generated: '2026-09-01'
+x-source: https://edoc.hu-berlin.de/server/oai/request?verb=Identify
+x-operator: institution
+x-authored-by: API Evangelist — NOT published by Humboldt-Universitaet zu Berlin

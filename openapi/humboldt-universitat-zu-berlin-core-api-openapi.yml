@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: edoc-Server DSpace REST API (Humboldt-Universität zu Berlin) Core API
-  description: Public, read-oriented subset of the DSpace REST API powering the edoc-Server Open Access institutional repository of Humboldt-Universität zu Berlin. The repository runs DSpace 8 and exposes communities, collections, items, and a discovery search as HAL/JSON resources. This description was authored from the live API responses observed at the base URL; only publicly reachable, unauthenticated read endpoints are documented here. Write, submission, workflow, and authenticated endpoints exist in DSpace but are intentionally omitted because they require authentication and are not publicly self-service.
+  title: edoc-Server DSpace REST API (Humboldt-Universität zu…
+  description: Public, read-oriented subset of the DSpace REST API powering the edoc-Server Open Access institutional repository of Humboldt-Universität zu Berlin.
   version: '8.4'
   contact:
     name: edoc-Server, University Library, Humboldt-Universität zu Berlin
@@ -152,23 +152,59 @@ paths:
           description: Not found
 components:
   schemas:
+    MetadataValue:
+      type: object
+      description: A single DSpace metadata value entry.
+      properties:
+        value:
+          type: string
+        language:
+          type:
+          - string
+          - 'null'
+        authority:
+          type:
+          - string
+          - 'null'
+        confidence:
+          type: integer
+        place:
+          type: integer
+      required:
+      - value
     Link:
       type: object
       properties:
         href:
           type: string
           format: uri
-    PageInfo:
+    Community:
       type: object
+      description: A DSpace community (a grouping of collections and sub-communities).
       properties:
-        size:
+        id:
+          type: string
+          format: uuid
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        handle:
+          type: string
+          example: 18452/21664
+        metadata:
+          $ref: '#/components/schemas/MetadataMap'
+        archivedItemsCount:
           type: integer
-        totalElements:
-          type: integer
-        totalPages:
-          type: integer
-        number:
-          type: integer
+        type:
+          type: string
+          enum:
+          - community
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
     MetadataMap:
       type: object
       description: Map of metadata field keys (e.g. "dc.title", "dc.identifier.uri", "dc.description") to arrays of metadata values.
@@ -176,6 +212,17 @@ components:
         type: array
         items:
           $ref: '#/components/schemas/MetadataValue'
+    PagedResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+        page:
+          $ref: '#/components/schemas/PageInfo'
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
     Item:
       type: object
       description: A DSpace item (a repository record such as a thesis, article, or dataset).
@@ -202,23 +249,13 @@ components:
           type: string
           format: date-time
         entityType:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         type:
           type: string
           enum:
           - item
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Link'
-    PagedResponse:
-      type: object
-      properties:
-        _embedded:
-          type: object
-        page:
-          $ref: '#/components/schemas/PageInfo'
         _links:
           type: object
           additionalProperties:
@@ -250,51 +287,17 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/Link'
-    MetadataValue:
+    PageInfo:
       type: object
-      description: A single DSpace metadata value entry.
       properties:
-        value:
-          type: string
-        language:
-          type: string
-          nullable: true
-        authority:
-          type: string
-          nullable: true
-        confidence:
+        size:
           type: integer
-        place:
+        totalElements:
           type: integer
-      required:
-      - value
-    Community:
-      type: object
-      description: A DSpace community (a grouping of collections and sub-communities).
-      properties:
-        id:
-          type: string
-          format: uuid
-        uuid:
-          type: string
-          format: uuid
-        name:
-          type: string
-        handle:
-          type: string
-          example: 18452/21664
-        metadata:
-          $ref: '#/components/schemas/MetadataMap'
-        archivedItemsCount:
+        totalPages:
           type: integer
-        type:
-          type: string
-          enum:
-          - community
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Link'
+        number:
+          type: integer
   parameters:
     uuid:
       name: uuid
@@ -304,14 +307,6 @@ components:
       schema:
         type: string
         format: uuid
-    page:
-      name: page
-      in: query
-      description: Zero-based page index
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     size:
       name: size
       in: query
@@ -320,3 +315,11 @@ components:
         type: integer
         minimum: 1
         default: 20
+    page:
+      name: page
+      in: query
+      description: Zero-based page index
+      schema:
+        type: integer
+        minimum: 0
+        default: 0

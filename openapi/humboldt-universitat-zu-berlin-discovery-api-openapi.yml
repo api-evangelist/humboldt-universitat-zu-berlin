@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: edoc-Server DSpace REST API (Humboldt-Universität zu Berlin) Core Discovery API
-  description: Public, read-oriented subset of the DSpace REST API powering the edoc-Server Open Access institutional repository of Humboldt-Universität zu Berlin. The repository runs DSpace 8 and exposes communities, collections, items, and a discovery search as HAL/JSON resources. This description was authored from the live API responses observed at the base URL; only publicly reachable, unauthenticated read endpoints are documented here. Write, submission, workflow, and authenticated endpoints exist in DSpace but are intentionally omitted because they require authentication and are not publicly self-service.
+  title: edoc-Server DSpace REST API (Humboldt-Universität zu…
+  description: Public, read-oriented subset of the DSpace REST API powering the edoc-Server Open Access institutional repository of Humboldt-Universität zu Berlin.
   version: '8.4'
   contact:
     name: edoc-Server, University Library, Humboldt-Universität zu Berlin
@@ -60,56 +60,30 @@ paths:
                 $ref: '#/components/schemas/SearchResultResponse'
 components:
   schemas:
-    Facet:
+    SearchResultObject:
       type: object
       properties:
-        name:
-          type: string
-        facetType:
-          type: string
-        facetLimit:
-          type: integer
-        _embedded:
+        hitHighlights:
           type: object
-          properties:
-            values:
-              type: array
-              items:
-                $ref: '#/components/schemas/FacetValue'
-    FacetValue:
-      type: object
-      properties:
-        label:
-          type: string
-        count:
-          type: integer
-        authorityKey:
-          type: string
-          nullable: true
         type:
           type: string
         _links:
           type: object
           properties:
-            search:
+            indexableObject:
               $ref: '#/components/schemas/Link'
+        _embedded:
+          type: object
+          properties:
+            indexableObject:
+              type: object
+              description: The embedded item, collection, or community.
     Link:
       type: object
       properties:
         href:
           type: string
           format: uri
-    PageInfo:
-      type: object
-      properties:
-        size:
-          type: integer
-        totalElements:
-          type: integer
-        totalPages:
-          type: integer
-        number:
-          type: integer
     SearchResultResponse:
       type: object
       properties:
@@ -136,33 +110,52 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Facet'
-    SearchResultObject:
+    FacetValue:
       type: object
       properties:
-        hitHighlights:
-          type: object
+        label:
+          type: string
+        count:
+          type: integer
+        authorityKey:
+          type:
+          - string
+          - 'null'
         type:
           type: string
         _links:
           type: object
           properties:
-            indexableObject:
+            search:
               $ref: '#/components/schemas/Link'
+    PageInfo:
+      type: object
+      properties:
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
+    Facet:
+      type: object
+      properties:
+        name:
+          type: string
+        facetType:
+          type: string
+        facetLimit:
+          type: integer
         _embedded:
           type: object
           properties:
-            indexableObject:
-              type: object
-              description: The embedded item, collection, or community.
+            values:
+              type: array
+              items:
+                $ref: '#/components/schemas/FacetValue'
   parameters:
-    page:
-      name: page
-      in: query
-      description: Zero-based page index
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     size:
       name: size
       in: query
@@ -171,3 +164,11 @@ components:
         type: integer
         minimum: 1
         default: 20
+    page:
+      name: page
+      in: query
+      description: Zero-based page index
+      schema:
+        type: integer
+        minimum: 0
+        default: 0

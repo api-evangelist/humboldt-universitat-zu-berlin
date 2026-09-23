@@ -1,0 +1,128 @@
+generated: '2026-09-01'
+method: probed
+source: >-
+  Live probes of Humboldt-Universität zu Berlin surfaces on 2026-09-01, plus the eduGAIN
+  technical database and the DataCite REST API. Every entry below points at the exact
+  location the evidence was read from.
+regime: education
+note: >-
+  Scored against the Kin Score `education` regime standards[]: scim, lti, oneroster, ed-fi,
+  caliper, qti, oai-pmh, shibboleth, saml, orcid, datacite, crossref. REWARD-ONLY — a
+  standard HU does not demonstrably implement is recorded as conforms:false with the probe
+  that says so, never left blank and never asserted from prose.
+standards:
+- id: oai-pmh
+  conforms: true
+  evidence: >-
+    OAI-PMH 2.0 implemented at https://edoc.hu-berlin.de/server/oai/request. GET ?verb=Identify
+    returned HTTP 200 XML on 2026-09-01 with <protocolVersion>2.0</protocolVersion>,
+    <repositoryName>edoc-Server</repositoryName>,
+    <repositoryIdentifier>edoc.hu-berlin.de</repositoryIdentifier>,
+    <adminEmail>edocadmins@lists.hu-berlin.de</adminEmail>,
+    <earliestDatestamp>2017-06-15T06:37:59Z</earliestDatestamp>,
+    <deletedRecord>transient</deletedRecord> and
+    <granularity>YYYY-MM-DDThh:mm:ssZ</granularity>. ?verb=ListMetadataFormats returned 18
+    prefixes (200, 4,216 bytes); ?verb=ListSets and ?verb=ListRecords&metadataPrefix=oai_dc
+    both returned 200. Declared in the contract at
+    openapi/humboldt-universitat-zu-berlin-oai-pmh-api-openapi.yml, paths./request.get,
+    parameter `verb` enum.
+- id: datacite
+  conforms: true
+  evidence: >-
+    Humboldt-Universität zu Berlin is a DataCite member. GET https://api.datacite.org/providers/vlef
+    returns name "Humboldt-Universität zu Berlin", symbol VLEF, memberType consortium_organization,
+    country DE, rorId https://ror.org/01hcx6992, created 2020-12-11. Ten repositories are registered
+    under it (GET https://api.datacite.org/repositories?provider-id=vlef): tib.hu-edoc (edoc-Server),
+    tib.hu-laudatio (LAUDATIO), tib.hu-mr (Media Repository), tib.hu-genop (Gender Open),
+    tib.hu (NOMAD), tib.hu-agep, tib.topoi, vlef.hu-fmb, vlef.clio-online, gesis.qjb.
+    GET https://api.datacite.org/dois?prefix=10.18452 reports 32,950 DOIs on HU's own prefix,
+    and GET https://api.datacite.org/prefixes/10.18452 returns 200. The edoc OAI-PMH interface
+    disseminates DataCite metadata directly: metadataPrefix `oai_datacite` is one of the 18
+    formats advertised by ListMetadataFormats, and it is declared in
+    openapi/humboldt-universitat-zu-berlin-oai-pmh-api-openapi.yml, parameter `metadataPrefix` enum.
+- id: shibboleth
+  conforms: true
+  evidence: >-
+    HU Berlin operates its own Shibboleth Identity Provider, entityID
+    https://shib-idp.cms.hu-berlin.de/idp/shibboleth, registered by DFN-AAI
+    (registrationAuthority https://www.aai.dfn.de) and published to eduGAIN. Read from
+    GET https://technical.edugain.org/api.php?action=list_entities&format=json on 2026-09-01,
+    which lists the entity with roles IDPSSODescriptor and AttributeAuthorityDescriptor,
+    displayName "de;Humboldt-Universität zu Berlin==en;Humboldt-University Berlin" and
+    eccs_status 1. A second HU entity, the service provider
+    https://korpling-auth.german.hu-berlin.de/shibboleth (Korpuslinguistik), is registered in
+    the same federation. The LAUDATIO repository offers "HU-account sign in" against this IdP
+    (https://www.laudatio-repository.org/authenticateuser).
+  caveat: >-
+    The IdP's own metadata URL https://shib-idp.cms.hu-berlin.de/idp/shibboleth returns HTTP 200
+    application/xml but serves Shibboleth's stock example metadata, with entityID
+    https://idp-dev.cms.hu-berlin.de/idp/shibboleth and DisplayName "A name for the IdP at
+    idp-dev.cms.hu-berlin.de". The authoritative metadata is the DFN-AAI aggregate, not that URL.
+    Recorded because a naive probe of that endpoint would read as a live self-published
+    federation descriptor when it is a misconfiguration.
+- id: saml
+  conforms: true
+  evidence: >-
+    SAML 2.0 is the protocol underneath the Shibboleth entry above. The eduGAIN record for
+    https://shib-idp.cms.hu-berlin.de/idp/shibboleth carries IDPSSODescriptor and
+    AttributeAuthorityDescriptor roles in the urn:oasis:names:tc:SAML:2.0:metadata namespace,
+    and the metadata served at that endpoint declares
+    protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" with
+    <shibmd:Scope regexp="false">hu-berlin.de</shibmd:Scope>.
+    HU's own service-provider integration documentation is at
+    https://www.cms.hu-berlin.de/de/dl/hu-iam/shibboleth.
+- id: orcid
+  conforms: false
+  evidence: >-
+    No ORCID identifier was found in any HU-operated surface probed. A full
+    ?verb=ListRecords&metadataPrefix=oai_dc page from edoc (200, 342,448 bytes) contains zero
+    occurrences of "orcid", and
+    GET https://api.datacite.org/dois?prefix=10.18452&query=nameIdentifiers.nameIdentifierScheme:ORCID
+    returns 0 of 32,950 DOIs carrying an ORCID nameIdentifier. HU may participate in the German
+    ORCID consortium, but nothing in its machine-readable output evidences it, so no conformance
+    is claimed.
+- id: crossref
+  conforms: false
+  evidence: >-
+    HU registers DOIs through DataCite (prefix 10.18452), not Crossref. No Crossref prefix or
+    depositor record was found for the institution.
+- id: scim
+  conforms: false
+  evidence: >-
+    No SCIM schema URN (urn:ietf:params:scim:schemas:...) appears in any contract in this repo,
+    and no SCIM endpoint was found on any hu-berlin.de host. HU's provisioning is internal to
+    HU-IAM and is not exposed.
+- id: lti
+  conforms: false
+  evidence: >-
+    No LTI tool-configuration or platform registration surface was found on a hu-berlin.de host.
+    HU's Moodle is at an authenticated host and publishes no LTI registration document.
+- id: oneroster
+  conforms: false
+  evidence: No IMS OneRoster endpoint or CSV bulk surface was found on any HU host.
+- id: ed-fi
+  conforms: false
+  evidence: >-
+    Ed-Fi is a US K-12/state-education data standard with no German higher-education adoption
+    path; no Ed-Fi ODS surface exists at HU.
+- id: caliper
+  conforms: false
+  evidence: No IMS Caliper Analytics sensor or event store was found on any HU host.
+- id: qti
+  conforms: false
+  evidence: No QTI assessment package interface was found on any public HU host.
+other:
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: >-
+    https://www.hu-berlin.de/.well-known/security.txt returns HTTP 200 text/plain (332 bytes)
+    with Contact mailto:vulnerability@hu-berlin.de, Policy
+    https://informationssicherheit.hu-berlin.de/de/schwachstellenmeldung, a Canonical line and
+    Expires 2027-08-02T03:45:11Z. Captured in
+    security/humboldt-universitat-zu-berlin-vulnerability-disclosure.yml.
+- id: openapi-3
+  conforms: partial
+  evidence: >-
+    Humboldt-Universität zu Berlin publishes NO OpenAPI of its own. Every OpenAPI in this repo
+    was authored by API Evangelist from live probes and from HU's prose reference, and each one
+    says so in info.description. This is recorded as `partial` for the surface, not for HU.

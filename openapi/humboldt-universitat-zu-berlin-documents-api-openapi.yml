@@ -1,0 +1,234 @@
+openapi: 3.2.0
+info:
+  title: LAUDATIO-Repository REST API (Humboldt-Universität zu…
+  description: Public, read-only REST API of the LAUDATIO-Repository (Long-term Access and Usage of Deeply Annotated Information), the open-access research-data repository for historical linguistic corpora operated by the Department of Corpus Linguistics (Institut für deutsche Sprache und Linguistik) together with the Computer- und Medienservice (CMS) of Humboldt-Universität zu Berlin.
+  version: v1
+  contact:
+    name: LAUDATIO-Repository, Korpuslinguistik & Computer- und Medienservice, Humboldt-Universität zu Berlin
+    url: https://www.laudatio-repository.org/contact
+  termsOfService: https://www.hu-berlin.de/de/hu/impressum
+servers:
+- url: https://www.laudatio-repository.org
+  description: LAUDATIO-Repository production
+tags:
+- name: Documents
+  description: Documents belonging to a published corpus
+paths:
+  /api/elasticapi/v1/documents:
+    get:
+      tags:
+      - Documents
+      summary: List all indexed documents
+      operationId: listDocuments
+      parameters:
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Envelope carrying document hits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HitListEnvelope'
+  /api/elasticapi/v1/documents/latest/count:
+    get:
+      tags:
+      - Documents
+      summary: Count the latest published documents
+      operationId: countLatestDocuments
+      parameters:
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Count envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountEnvelope'
+              example:
+                success: true
+                data: '{"count":5284,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0}}'
+                message: ' Latest documents count retrieved successfully.'
+                status: 200
+                count: 5284
+  /api/elasticapi/v1/documents/latest/{from}/{size}:
+    get:
+      tags:
+      - Documents
+      summary: Page through the latest published documents
+      operationId: listLatestDocuments
+      parameters:
+      - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/From'
+      - $ref: '#/components/parameters/Size'
+      responses:
+        '200':
+          description: Envelope carrying a page of document hits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HitListEnvelope'
+  /api/elasticapi/v1/documents/latest/searchMain:
+    get:
+      tags:
+      - Documents
+      summary: Search the latest published documents
+      operationId: searchLatestDocuments
+      parameters:
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Envelope carrying matching document hits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HitListEnvelope'
+  /api/elasticapi/v1/documents/latest/searchMain/count:
+    get:
+      tags:
+      - Documents
+      summary: Count documents matching the main search
+      operationId: countSearchLatestDocuments
+      parameters:
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Count envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountEnvelope'
+  /api/elasticapi/v1/documents/{id}/{index}:
+    get:
+      tags:
+      - Documents
+      summary: Retrieve one document by Elasticsearch id and index
+      operationId: getDocument
+      parameters:
+      - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/Index'
+      responses:
+        '200':
+          description: Envelope carrying the document hit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HitListEnvelope'
+  /api/elasticapi/v1/documents/{id}/{index}/annotations:
+    get:
+      tags:
+      - Documents
+      summary: List the annotation layers of one document
+      operationId: getDocumentAnnotations
+      parameters:
+      - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/Index'
+      responses:
+        '200':
+          description: Envelope carrying annotation hits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HitListEnvelope'
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Elasticsearch document id of the record.
+      schema:
+        type: string
+        example: dGhNsGoB6bp_h9Nar9dI
+    From:
+      name: from
+      in: path
+      required: true
+      description: Zero-based offset of the first hit to return.
+      schema:
+        type: integer
+        minimum: 0
+        example: 0
+    ApiVersion:
+      name: Api-Version
+      in: header
+      required: true
+      description: API version selector; the published reference sends `v1` on every call.
+      schema:
+        type: string
+        enum:
+        - v1
+        default: v1
+    Size:
+      name: size
+      in: path
+      required: true
+      description: Number of hits to return.
+      schema:
+        type: integer
+        minimum: 1
+        example: 100
+    Index:
+      name: index
+      in: path
+      required: true
+      description: Elasticsearch index the record lives in.
+      schema:
+        type: string
+        example: corpus_marchenkorpus-version-1-0_1-0_1557736034
+  schemas:
+    HitListEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/Envelope'
+      - type: object
+        properties:
+          data:
+            type: array
+            description: Raw Elasticsearch hits.
+            items:
+              $ref: '#/components/schemas/Hit'
+    Envelope:
+      type: object
+      description: Common response envelope returned by every LAUDATIO endpoint.
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        status:
+          type: integer
+          example: 200
+      required:
+      - success
+    CountEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/Envelope'
+      - type: object
+        properties:
+          data:
+            type: string
+            description: JSON-encoded Elasticsearch count response, returned as a string.
+          count:
+            type: integer
+            description: Number of matching records.
+    Hit:
+      type: object
+      description: An Elasticsearch hit. `_source` carries the LAUDATIO TEI-ODD derived header metadata; its field set differs between corpus, document and annotation indices and is not fixed by the API, so it is described as a free-form object rather than invented here.
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+        _score:
+          type: number
+        _source:
+          type: object
+          additionalProperties: true
+x-method: derived
+x-generated: '2026-09-01'
+x-source: https://www.laudatio-repository.org/docs/elasticapi
+x-operator: institution
+x-authored-by: API Evangelist — NOT published by Humboldt-Universitaet zu Berlin

@@ -1,18 +1,36 @@
 {
   "provider": "humboldt-universitat-zu-berlin",
   "sources": [
-    "humboldt-universitat-zu-berlin-core-api-openapi.yml",
-    "humboldt-universitat-zu-berlin-discovery-api-openapi.yml",
-    "humboldt-universitat-zu-berlin-root-api-openapi.yml"
+    "_original/humboldt-universitat-zu-berlin-edoc-oai-pmh.yaml",
+    "_original/humboldt-universitat-zu-berlin-edoc-rest.yaml",
+    "_original/humboldt-universitat-zu-berlin-laudatio-elasticapi.yaml"
   ],
   "outputs": [
+    "humboldt-universitat-zu-berlin-oai-pmh-api-openapi.yml",
     "humboldt-universitat-zu-berlin-core-api-openapi.yml",
     "humboldt-universitat-zu-berlin-discovery-api-openapi.yml",
-    "humboldt-universitat-zu-berlin-root-api-openapi.yml"
+    "humboldt-universitat-zu-berlin-root-api-openapi.yml",
+    "humboldt-universitat-zu-berlin-annotations-api-openapi.yml",
+    "humboldt-universitat-zu-berlin-corpora-api-openapi.yml",
+    "humboldt-universitat-zu-berlin-documents-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "humboldt-universitat-zu-berlin-edoc-oai-pmh.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "humboldt-universitat-zu-berlin-edoc-rest.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "humboldt-universitat-zu-berlin-laudatio-elasticapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "humboldt-universitat-zu-berlin-annotations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "humboldt-universitat-zu-berlin-core-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "humboldt-universitat-zu-berlin-corpora-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "humboldt-universitat-zu-berlin-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "humboldt-universitat-zu-berlin-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "humboldt-universitat-zu-berlin-oai-pmh-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "humboldt-universitat-zu-berlin-root-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
