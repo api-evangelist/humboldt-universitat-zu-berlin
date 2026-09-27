@@ -151,7 +151,76 @@ paths:
         '404':
           description: Not found
 components:
+  parameters:
+    uuid:
+      name: uuid
+      in: path
+      required: true
+      description: UUID of the resource
+      schema:
+        type: string
+        format: uuid
+    page:
+      name: page
+      in: query
+      description: Zero-based page index
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    size:
+      name: size
+      in: query
+      description: Page size
+      schema:
+        type: integer
+        minimum: 1
+        default: 20
   schemas:
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+    PageInfo:
+      type: object
+      properties:
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
+    Collection:
+      type: object
+      description: A DSpace collection (a container of items).
+      properties:
+        id:
+          type: string
+          format: uuid
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        handle:
+          type: string
+          example: 18452/20731
+        metadata:
+          $ref: '#/components/schemas/MetadataMap'
+        archivedItemsCount:
+          type: integer
+        type:
+          type: string
+          enum:
+          - collection
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
     MetadataValue:
       type: object
       description: A single DSpace metadata value entry.
@@ -172,39 +241,6 @@ components:
           type: integer
       required:
       - value
-    Link:
-      type: object
-      properties:
-        href:
-          type: string
-          format: uri
-    Community:
-      type: object
-      description: A DSpace community (a grouping of collections and sub-communities).
-      properties:
-        id:
-          type: string
-          format: uuid
-        uuid:
-          type: string
-          format: uuid
-        name:
-          type: string
-        handle:
-          type: string
-          example: 18452/21664
-        metadata:
-          $ref: '#/components/schemas/MetadataMap'
-        archivedItemsCount:
-          type: integer
-        type:
-          type: string
-          enum:
-          - community
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Link'
     MetadataMap:
       type: object
       description: Map of metadata field keys (e.g. "dc.title", "dc.identifier.uri", "dc.description") to arrays of metadata values.
@@ -212,17 +248,6 @@ components:
         type: array
         items:
           $ref: '#/components/schemas/MetadataValue'
-    PagedResponse:
-      type: object
-      properties:
-        _embedded:
-          type: object
-        page:
-          $ref: '#/components/schemas/PageInfo'
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Link'
     Item:
       type: object
       description: A DSpace item (a repository record such as a thesis, article, or dataset).
@@ -260,9 +285,20 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/Link'
-    Collection:
+    PagedResponse:
       type: object
-      description: A DSpace collection (a container of items).
+      properties:
+        _embedded:
+          type: object
+        page:
+          $ref: '#/components/schemas/PageInfo'
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Link'
+    Community:
+      type: object
+      description: A DSpace community (a grouping of collections and sub-communities).
       properties:
         id:
           type: string
@@ -274,7 +310,7 @@ components:
           type: string
         handle:
           type: string
-          example: 18452/20731
+          example: 18452/21664
         metadata:
           $ref: '#/components/schemas/MetadataMap'
         archivedItemsCount:
@@ -282,44 +318,8 @@ components:
         type:
           type: string
           enum:
-          - collection
+          - community
         _links:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/Link'
-    PageInfo:
-      type: object
-      properties:
-        size:
-          type: integer
-        totalElements:
-          type: integer
-        totalPages:
-          type: integer
-        number:
-          type: integer
-  parameters:
-    uuid:
-      name: uuid
-      in: path
-      required: true
-      description: UUID of the resource
-      schema:
-        type: string
-        format: uuid
-    size:
-      name: size
-      in: query
-      description: Page size
-      schema:
-        type: integer
-        minimum: 1
-        default: 20
-    page:
-      name: page
-      in: query
-      description: Zero-based page index
-      schema:
-        type: integer
-        minimum: 0
-        default: 0

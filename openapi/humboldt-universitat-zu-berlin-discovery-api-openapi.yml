@@ -60,74 +60,12 @@ paths:
                 $ref: '#/components/schemas/SearchResultResponse'
 components:
   schemas:
-    SearchResultObject:
-      type: object
-      properties:
-        hitHighlights:
-          type: object
-        type:
-          type: string
-        _links:
-          type: object
-          properties:
-            indexableObject:
-              $ref: '#/components/schemas/Link'
-        _embedded:
-          type: object
-          properties:
-            indexableObject:
-              type: object
-              description: The embedded item, collection, or community.
     Link:
       type: object
       properties:
         href:
           type: string
           format: uri
-    SearchResultResponse:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            searchResult:
-              type: object
-              properties:
-                _embedded:
-                  type: object
-                  properties:
-                    objects:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/SearchResultObject'
-                page:
-                  $ref: '#/components/schemas/PageInfo'
-                _links:
-                  type: object
-                  additionalProperties:
-                    $ref: '#/components/schemas/Link'
-            facets:
-              type: array
-              items:
-                $ref: '#/components/schemas/Facet'
-    FacetValue:
-      type: object
-      properties:
-        label:
-          type: string
-        count:
-          type: integer
-        authorityKey:
-          type:
-          - string
-          - 'null'
-        type:
-          type: string
-        _links:
-          type: object
-          properties:
-            search:
-              $ref: '#/components/schemas/Link'
     PageInfo:
       type: object
       properties:
@@ -155,15 +93,69 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/FacetValue'
+    FacetValue:
+      type: object
+      properties:
+        label:
+          type: string
+        count:
+          type: integer
+        authorityKey:
+          type:
+          - string
+          - 'null'
+        type:
+          type: string
+        _links:
+          type: object
+          properties:
+            search:
+              $ref: '#/components/schemas/Link'
+    SearchResultObject:
+      type: object
+      properties:
+        hitHighlights:
+          type: object
+        type:
+          type: string
+        _links:
+          type: object
+          properties:
+            indexableObject:
+              $ref: '#/components/schemas/Link'
+        _embedded:
+          type: object
+          properties:
+            indexableObject:
+              type: object
+              description: The embedded item, collection, or community.
+    SearchResultResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            searchResult:
+              type: object
+              properties:
+                _embedded:
+                  type: object
+                  properties:
+                    objects:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/SearchResultObject'
+                page:
+                  $ref: '#/components/schemas/PageInfo'
+                _links:
+                  type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/Link'
+            facets:
+              type: array
+              items:
+                $ref: '#/components/schemas/Facet'
   parameters:
-    size:
-      name: size
-      in: query
-      description: Page size
-      schema:
-        type: integer
-        minimum: 1
-        default: 20
     page:
       name: page
       in: query
@@ -172,3 +164,11 @@ components:
         type: integer
         minimum: 0
         default: 0
+    size:
+      name: size
+      in: query
+      description: Page size
+      schema:
+        type: integer
+        minimum: 1
+        default: 20
