@@ -183,15 +183,6 @@ components:
       required:
       - success
   parameters:
-    From:
-      name: from
-      in: path
-      required: true
-      description: Zero-based offset of the first hit to return.
-      schema:
-        type: integer
-        minimum: 0
-        example: 0
     Id:
       name: id
       in: path
@@ -227,6 +218,15 @@ components:
         type: integer
         minimum: 1
         example: 100
+    From:
+      name: from
+      in: path
+      required: true
+      description: Zero-based offset of the first hit to return.
+      schema:
+        type: integer
+        minimum: 0
+        example: 0
 x-method: derived
 x-generated: '2026-09-01'
 x-source: https://www.laudatio-repository.org/docs/elasticapi
