@@ -132,7 +132,65 @@ paths:
               schema:
                 $ref: '#/components/schemas/HitListEnvelope'
 components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Elasticsearch document id of the record.
+      schema:
+        type: string
+        example: dGhNsGoB6bp_h9Nar9dI
+    ApiVersion:
+      name: Api-Version
+      in: header
+      required: true
+      description: API version selector; the published reference sends `v1` on every call.
+      schema:
+        type: string
+        enum:
+        - v1
+        default: v1
+    From:
+      name: from
+      in: path
+      required: true
+      description: Zero-based offset of the first hit to return.
+      schema:
+        type: integer
+        minimum: 0
+        example: 0
+    Index:
+      name: index
+      in: path
+      required: true
+      description: Elasticsearch index the record lives in.
+      schema:
+        type: string
+        example: corpus_marchenkorpus-version-1-0_1-0_1557736034
+    Size:
+      name: size
+      in: path
+      required: true
+      description: Number of hits to return.
+      schema:
+        type: integer
+        minimum: 1
+        example: 100
   schemas:
+    Envelope:
+      type: object
+      description: Common response envelope returned by every LAUDATIO endpoint.
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        status:
+          type: integer
+          example: 200
+      required:
+      - success
     Hit:
       type: object
       description: An Elasticsearch hit. `_source` carries the LAUDATIO TEI-ODD derived header metadata; its field set differs between corpus, document and annotation indices and is not fixed by the API, so it is described as a free-form object rather than invented here.
@@ -169,64 +227,6 @@ components:
           count:
             type: integer
             description: Number of matching records.
-    Envelope:
-      type: object
-      description: Common response envelope returned by every LAUDATIO endpoint.
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-        status:
-          type: integer
-          example: 200
-      required:
-      - success
-  parameters:
-    Id:
-      name: id
-      in: path
-      required: true
-      description: Elasticsearch document id of the record.
-      schema:
-        type: string
-        example: dGhNsGoB6bp_h9Nar9dI
-    ApiVersion:
-      name: Api-Version
-      in: header
-      required: true
-      description: API version selector; the published reference sends `v1` on every call.
-      schema:
-        type: string
-        enum:
-        - v1
-        default: v1
-    Index:
-      name: index
-      in: path
-      required: true
-      description: Elasticsearch index the record lives in.
-      schema:
-        type: string
-        example: corpus_marchenkorpus-version-1-0_1-0_1557736034
-    Size:
-      name: size
-      in: path
-      required: true
-      description: Number of hits to return.
-      schema:
-        type: integer
-        minimum: 1
-        example: 100
-    From:
-      name: from
-      in: path
-      required: true
-      description: Zero-based offset of the first hit to return.
-      schema:
-        type: integer
-        minimum: 0
-        example: 0
 x-method: derived
 x-generated: '2026-09-01'
 x-source: https://www.laudatio-repository.org/docs/elasticapi

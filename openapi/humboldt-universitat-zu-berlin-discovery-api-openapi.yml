@@ -60,75 +60,12 @@ paths:
                 $ref: '#/components/schemas/SearchResultResponse'
 components:
   schemas:
-    FacetValue:
-      type: object
-      properties:
-        label:
-          type: string
-        count:
-          type: integer
-        authorityKey:
-          type:
-          - string
-          - 'null'
-        type:
-          type: string
-        _links:
-          type: object
-          properties:
-            search:
-              $ref: '#/components/schemas/Link'
-    SearchResultObject:
-      type: object
-      properties:
-        hitHighlights:
-          type: object
-        type:
-          type: string
-        _links:
-          type: object
-          properties:
-            indexableObject:
-              $ref: '#/components/schemas/Link'
-        _embedded:
-          type: object
-          properties:
-            indexableObject:
-              type: object
-              description: The embedded item, collection, or community.
     Link:
       type: object
       properties:
         href:
           type: string
           format: uri
-    Facet:
-      type: object
-      properties:
-        name:
-          type: string
-        facetType:
-          type: string
-        facetLimit:
-          type: integer
-        _embedded:
-          type: object
-          properties:
-            values:
-              type: array
-              items:
-                $ref: '#/components/schemas/FacetValue'
-    PageInfo:
-      type: object
-      properties:
-        size:
-          type: integer
-        totalElements:
-          type: integer
-        totalPages:
-          type: integer
-        number:
-          type: integer
     SearchResultResponse:
       type: object
       properties:
@@ -155,15 +92,70 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Facet'
+    SearchResultObject:
+      type: object
+      properties:
+        hitHighlights:
+          type: object
+        type:
+          type: string
+        _links:
+          type: object
+          properties:
+            indexableObject:
+              $ref: '#/components/schemas/Link'
+        _embedded:
+          type: object
+          properties:
+            indexableObject:
+              type: object
+              description: The embedded item, collection, or community.
+    PageInfo:
+      type: object
+      properties:
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
+    Facet:
+      type: object
+      properties:
+        name:
+          type: string
+        facetType:
+          type: string
+        facetLimit:
+          type: integer
+        _embedded:
+          type: object
+          properties:
+            values:
+              type: array
+              items:
+                $ref: '#/components/schemas/FacetValue'
+    FacetValue:
+      type: object
+      properties:
+        label:
+          type: string
+        count:
+          type: integer
+        authorityKey:
+          type:
+          - string
+          - 'null'
+        type:
+          type: string
+        _links:
+          type: object
+          properties:
+            search:
+              $ref: '#/components/schemas/Link'
   parameters:
-    size:
-      name: size
-      in: query
-      description: Page size
-      schema:
-        type: integer
-        minimum: 1
-        default: 20
     page:
       name: page
       in: query
@@ -172,3 +164,11 @@ components:
         type: integer
         minimum: 0
         default: 0
+    size:
+      name: size
+      in: query
+      description: Page size
+      schema:
+        type: integer
+        minimum: 1
+        default: 20
