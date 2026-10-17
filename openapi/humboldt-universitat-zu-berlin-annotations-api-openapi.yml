@@ -133,14 +133,15 @@ paths:
                 $ref: '#/components/schemas/HitListEnvelope'
 components:
   parameters:
-    Id:
-      name: id
+    From:
+      name: from
       in: path
       required: true
-      description: Elasticsearch document id of the record.
+      description: Zero-based offset of the first hit to return.
       schema:
-        type: string
-        example: dGhNsGoB6bp_h9Nar9dI
+        type: integer
+        minimum: 0
+        example: 0
     ApiVersion:
       name: Api-Version
       in: header
@@ -151,15 +152,6 @@ components:
         enum:
         - v1
         default: v1
-    From:
-      name: from
-      in: path
-      required: true
-      description: Zero-based offset of the first hit to return.
-      schema:
-        type: integer
-        minimum: 0
-        example: 0
     Index:
       name: index
       in: path
@@ -177,7 +169,26 @@ components:
         type: integer
         minimum: 1
         example: 100
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Elasticsearch document id of the record.
+      schema:
+        type: string
+        example: dGhNsGoB6bp_h9Nar9dI
   schemas:
+    CountEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/Envelope'
+      - type: object
+        properties:
+          data:
+            type: string
+            description: JSON-encoded Elasticsearch count response, returned as a string.
+          count:
+            type: integer
+            description: Number of matching records.
     Envelope:
       type: object
       description: Common response envelope returned by every LAUDATIO endpoint.
@@ -216,17 +227,6 @@ components:
             description: Raw Elasticsearch hits.
             items:
               $ref: '#/components/schemas/Hit'
-    CountEnvelope:
-      allOf:
-      - $ref: '#/components/schemas/Envelope'
-      - type: object
-        properties:
-          data:
-            type: string
-            description: JSON-encoded Elasticsearch count response, returned as a string.
-          count:
-            type: integer
-            description: Number of matching records.
 x-method: derived
 x-generated: '2026-09-01'
 x-source: https://www.laudatio-repository.org/docs/elasticapi
