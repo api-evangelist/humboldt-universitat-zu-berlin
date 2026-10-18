@@ -257,6 +257,10 @@ apis:
   humanURL: https://scm.cms.hu-berlin.de/
   baseURL: https://scm.cms.hu-berlin.de/api/v4
   tags:
+  - Version Control
+  - GitLab
+  - Research Software
+  tags_raw:
   - Source Control
   - GitLab
   - Research Software
