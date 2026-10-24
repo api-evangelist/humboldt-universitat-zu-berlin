@@ -3,7 +3,8 @@
   "sources": [
     "_original/humboldt-universitat-zu-berlin-edoc-oai-pmh.yaml",
     "_original/humboldt-universitat-zu-berlin-edoc-rest.yaml",
-    "_original/humboldt-universitat-zu-berlin-laudatio-elasticapi.yaml"
+    "_original/humboldt-universitat-zu-berlin-laudatio-elasticapi.yaml",
+    "_original/humboldt-universitat-zu-berlin-openapi.yml"
   ],
   "outputs": [
     "humboldt-universitat-zu-berlin-oai-pmh-api-openapi.yml",
@@ -12,17 +13,23 @@
     "humboldt-universitat-zu-berlin-root-api-openapi.yml",
     "humboldt-universitat-zu-berlin-annotations-api-openapi.yml",
     "humboldt-universitat-zu-berlin-corpora-api-openapi.yml",
-    "humboldt-universitat-zu-berlin-documents-api-openapi.yml"
+    "humboldt-universitat-zu-berlin-documents-api-openapi.yml",
+    "humboldt-universitat-zu-berlin-authority-control-tasks-api-openapi.yml",
+    "humboldt-universitat-zu-berlin-lending-requests-api-openapi.yml",
+    "humboldt-universitat-zu-berlin-printouts-api-openapi.yml",
+    "humboldt-universitat-zu-berlin-requested-resources-api-openapi.yml",
+    "humboldt-universitat-zu-berlin-test-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "humboldt-universitat-zu-berlin-edoc-oai-pmh.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "humboldt-universitat-zu-berlin-edoc-rest.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "humboldt-universitat-zu-berlin-laudatio-elasticapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "humboldt-universitat-zu-berlin-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: written (+5 apis, 16 total)"
   ],
   "skipped": [
     "humboldt-universitat-zu-berlin-annotations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
